@@ -1,0 +1,268 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+%\usepackage[margin=2cm]{geometry}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[pdftex, pdfborderstyle={/S/U/W 0}]{hyperref}
+\numberwithin{equation}{subsection}
+\usepackage{commath}
+\usepackage[italian]{babel}
+\usepackage{bm}
+\usepackage{indentfirst}
+
+\usepackage{cool}
+\Style{DSymb={\mathrm d},DShorten=true,IntegrateDifferentialDSymb=\mathrm{d}}
+
+\usepackage{url}
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+\author{Jacopo Tissino \\
+VB
+(CLIL)\\
+Liceo Scientifico M. Grigoletti}
+\date{A. S. 2015--16}
+\title{\huge{\textbf{Turbolenza}}\\
+\Large{Fluidodinamica e Van Gogh}}
+\begin{document}
+
+\maketitle
+
+\section{Navier-Stokes}
+
+\subsection{Ricavarle}
+
+Partiamo \cite{derivationns} dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume: se il volume è $\Omega$, la proprietà è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono i \emph{sinks}, ovvero i luoghi dove la proprietà viene assorbita (presi come negativi), scriviamo:
+
+\begin{equation}
+\frac{\text{d}}{\text{d} t} \int_{\Omega} \phi \, \text{d} V = -
+\int_{\partial \Omega} \phi \mathbf{v} \cdot \mathbf{\hat{n}} \, \text{d} A +
+\int_{\Omega} \mathbf{s} \, \text{d} V
+\end{equation}
+
+Applicando il teorema della divergenza, possiamo rendere tutti gli integrali volumetrici, poi portare la derivata temporale nel primo integrale secondo la regola di Leibniz, per ottenere:
+
+\begin{equation}
+\frac{\partial \phi}{\partial t} = - \nabla \cdot ( \phi \mathbf{v} ) + \mathbf{s}
+\end{equation}
+
+\paragraph{Massa}
+
+Se prendiamo come $\phi$ la densità $\rho$, per la conservazione della massa otteniamo:
+
+\begin{equation}
+\frac{\partial \rho}{\partial t} + \nabla \cdot ( \phi \mathbf{v} ) = 0 \label{consmassa}
+\end{equation}
+
+Postulando che il fluido non possa essere compresso, ovvero che $\frac{\text{d} \rho}{\text{d} t} = 0$, ricaviamo:
+
+\begin{equation}
+\nabla \cdot \mathbf{v} = 0
+\end{equation}
+
+\paragraph{Quantità di moto}
+
+Se, invece, consideriamo $\phi = \rho \mathbf{v}$, ovvero il campo vettoriale della quantità di moto, ricaviamo:
+
+\begin{equation}
+\pderiv{(\rho \mathbf{v})}{t} + \nabla \cdot ( \rho \mathbf{v} \mathbf{v} ) =  \mathbf{s}
+\end{equation}
+
+Semplifichiamo dunque, utilizzando le seguenti identità dell'analisi tensoriale: 
+\begin{itemize}
+\item $\nabla \cdot (\phi \mathbf{A}) = \mathbf{A} (\nabla \phi) + \phi (\nabla \cdot \mathbf{A})$ 
+\item $\nabla \cdot (\mathbf{A} \mathbf{B}) = \mathbf{A} \cdot (\nabla \mathbf{B}) + (\nabla \mathbf{A})\cdot \mathbf{B}$.
+\end{itemize}
+
+\begin{align*}
+\rho \pderiv{\mathbf{v}}{t} + \mathbf{v}\pderiv{\rho}{t} + \mathbf{v} \mathbf{v} \cdot \nabla \rho
++ \rho \left( \mathbf{v} \cdot (\nabla \mathbf{v}) + \mathbf{v} (\nabla \cdot \mathbf{v})  \right) &= \mathbf{s} \\
+\mathbf{v}\left( \pderiv{\rho}{t} + \mathbf{v} \cdot \nabla \rho + \rho (\nabla \cdot \mathbf{v}) \right) + \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) &= \mathbf{s} \\
+\mathbf{v}\left( \pderiv{\rho}{t} + \nabla \cdot (\rho \mathbf{v}) \right) + \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) &= \mathbf{s} \\
+\end{align*}
+
+Per la \ref{consmassa} il termine moltiplicato per $\mathbf{v}$ è pari a 0, dunque ci rimane:
+
+\begin{equation}
+\rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) = \mathbf{s}
+\end{equation}
+
+L'integrale volumetrico del termine $\mathbf{s}$ comprende tutti gli altri tipi di forze che possono agire sull'infinitesimo di volume, che dividiamo in pressione e forze viscose (ovvero, nello \emph{stress tensor}
+
+\begin{equation}
+\bm{\sigma}_{ij} = \begin{pmatrix}
+\sigma_{xx} &  \tau_{xy} & \tau_{xz} \\
+\tau_{yx} &  \sigma_{yy} & \tau_{yz} \\
+\tau_{zx} &  \tau_{zy} & \sigma_{zz}
+\end{pmatrix}
+\end{equation}
+
+consideriamo prima le componenti ortogonali e poi gli sforzi di taglio).
+
+\subparagraph{Pressione}
+
+Guardiamo la forza esercitata dalla pressione lungo una sola dimensione, come la $x$:
+
+\begin{equation}
+F_x =\left(p \text{d}y \text{d}z - \left(p + \pderiv{p}{x}\text{d}x\right)\text{d}y\text{d}z\right) \mathbf{\hat{i}} = -\pderiv{p}{x}\text{d}V\mathbf{\hat{i}}
+\end{equation}
+
+Dunque in tutte e tre le dimensioni abbiamo
+
+\begin{equation}
+\mathbf{F} = -\nabla p\, \mathrm{d} V
+\end{equation}
+
+\subparagraph{Forza viscosa}
+
+La forza viscosa lungo una superficie $S = \text{d}y\text{d}z$ si può ricavare in funzione del parametro \emph{viscosità dinamica} $\mu$, che spesso dipende dalla temperatura:
+
+\begin{equation}
+F_x = \mu S \pderiv{\mathbf{v}}{x} = \mu \pderiv[2]{\mathbf{v}}{x} \mathrm{d}V
+\end{equation}
+
+Dunque, definendo la viscosità \emph{cinematica} $\nu = \mu/\rho$:
+
+\begin{equation}
+\mathbf{F} = \nu\rho \nabla^2 \mathbf{v} \mathrm{d}V
+\end{equation}
+
+Possiamo scrivere che:
+
+\begin{equation}
+\int_{\Omega} \mathbf{s} \, \text{d} V = \int_{\Omega} \left( -\nabla p\, \mathrm{d} V + \nu\rho \nabla^2 \mathbf{v} \mathrm{d}V \right)
+\end{equation}
+
+\subsection{Formulazione}
+
+Sinteticamente, le equazioni di Navier-Stokes si possono esprimere così:
+
+\begin{subequations}
+\begin{align}
+\frac{\partial \mathbf{v}}{\partial t} + (\nabla \mathbf{v}) \mathbf{v} &= -\frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{v} \label{navier-stokes} \\
+\nabla \cdot \mathbf{v} &= 0
+\end{align}
+\end{subequations}
+
+Oppure, scrivendo tutte le derivate parziali esplicitamente, se il vettore velocità è $\mathbf{v} (u, v, w)$:
+
+\renewcommand{\arraystretch}{2}
+\begin{equation}
+\frac{\partial}{\partial t} \begin{bmatrix}
+u \\
+v \\
+w 
+\end{bmatrix} +
+\begin{bmatrix}
+u \dfrac{\partial u}{\partial x} & v \dfrac{\partial u}{\partial y} & w \dfrac{\partial u}{\partial z} \\
+u \dfrac{\partial v}{\partial x} & v \dfrac{\partial v}{\partial y} & w \dfrac{\partial v}{\partial z} \\
+u \dfrac{\partial w}{\partial x} & v \dfrac{\partial w}{\partial y} & w \dfrac{\partial w}{\partial z} \\
+\end{bmatrix} =
+-\dfrac{1}{\rho}
+\begin{bmatrix}
+\dfrac{\partial p}{\partial x} \\
+\dfrac{\partial p}{\partial y} \\
+\dfrac{\partial p}{\partial z} \\
+\end{bmatrix} +
+\nu 
+\begin{bmatrix}
+\dfrac{\partial^2 u}{\partial x^2} & \dfrac{\partial^2 u}{\partial y^2} & \dfrac{\partial^2 u}{\partial z^2} \\
+\dfrac{\partial^2 v}{\partial x^2} & \dfrac{\partial^2 v}{\partial y^2} & \dfrac{\partial^2 v}{\partial z^2} \\
+\dfrac{\partial^2 w}{\partial x^2} & \dfrac{\partial^2 w}{\partial y^2} & \dfrac{\partial^2 w}{\partial z^2} \\
+\end{bmatrix}
+\end{equation}
+
+\subsection{Il numero di Reynolds}
+
+È definito come
+
+\begin{equation}
+\text{Re} = \frac{v L}{\nu} = \frac{\rho v L}{\mu}
+\end{equation}
+
+dove $v$ è la velocità media del flusso e $L$ è la lunghezza caratteristica del tratto che consideriamo.
+Rappresenta il rapporto fra le forze inerziali e quelle viscose.
+
+\paragraph{Ricaviamolo}
+
+Prendiamo la \ref{navier-stokes} e moltiplichiamola per $L/v^2$, dove $L$ è una lunghezza caratteristica e $v$ è la velocità media.
+
+Ridefiniamo poi: 
+
+\begin{equation}
+\mathbf{v'} = \frac{\mathbf{v}}{v},\qquad p' = \frac{p}{\rho v^2},\qquad \frac{\partial}{\partial t'} = \frac{L}{v} \frac{\partial}{\partial t},\qquad \nabla' = L \nabla
+\end{equation}
+
+Ricaviamo dunque l'equazione adimensionalizzata: 
+
+\begin{equation}
+\frac{\partial \mathbf{v'}}{\partial t'} + (\nabla' \mathbf{v'}) \mathbf{v'} = -\nabla' p' + \frac{\mu}{\rho L v} \nabla'^2 \mathbf{v'}
+\end{equation}
+
+Ovvero, togliendo i primi:
+
+\begin{equation}
+\frac{\partial \mathbf{v}}{\partial t} + (\nabla \mathbf{v}) \mathbf{v} = -\nabla p + \frac{1}{\text{Re}} \nabla^2 \mathbf{v}
+\end{equation}
+
+Si può dunque vedere che, al tendere di Re all'infinito, il termine viscoso scompare, rendendo il regime completamente inerziale.
+
+\paragraph{Valutazioni qualitative}
+
+\begin{itemize}
+\item Ad alti numeri di Reynolds, le forze inerziali dominano e il regime è \emph{turbolento}, mentre
+\item a bassi numeri di Reynolds, le forze viscose dominano e il regime è \emph{laminare}.
+\end{itemize}
+
+\section{Il flusso turbolento}
+
+Il flusso turbolento è composto da vortici di diverse dimensioni. L'energia viene trasmessa dai più grandi ai più piccoli, fino a quando non viene dissipata completamente.
+
+Dividiamo la velocità in una parte media e una fluttuazione: $\mathbf{v} = \mathbf{U} + \mathbf{u}$, dove $\mathbf{u}$ è la fluttuazione, ovvero $\mathbf{\bar{u}} = 0$
+
+Parentesi angolate: media?
+
+\tableofcontents
+
+\begin{thebibliography}{1}
+
+\bibitem{study2006}
+  J.L. Aragón, Gerardo G. Naumis, M. Bai, M. Torres, P.K. Maini, \\
+  \emph{Turbulent luminance in impassioned van Gogh paintings}, \\
+  \url{http://arxiv.org/abs/physics/0606246}, 
+  2006.
+
+\bibitem{kolmogorovpres}
+  Karima Khusnutdinova, 
+  \emph{Kolmogorov's $5/3$ law}, \\
+  \url{http://homepages.lboro.ac.uk/~makk/mathrev_kolmogorov.pdf},
+  2009.
+  
+\bibitem{powerlaw}
+  Terence Tao,
+  \emph{Kolmogorov’s power law for turbulence}, \\
+  \url{https://terrytao.wordpress.com/2014/05/15/kolmogorovs-power-law-for-turbulence/}, 2014.
+
+\bibitem{gogh1}
+  Marianne Freiberger, 
+  \emph{Troubled minds and perfect turbulence}, \\
+  \url{https://plus.maths.org/content/troubled-minds-and-perfect-turbulence},
+  2006.
+  
+\bibitem{gogh2}
+  Philip Ball, 
+  \emph{Van Gogh painted perfect turbulence}, \\
+  \url{http://www.nature.com/news/2006/060703/full/news060703-17.html#close},
+  2006,
+  su \emph{``Nature''}.
+
+\bibitem{heisenberg}  
+  \url{http://scienceworld.wolfram.com/biography/Heisenberg.html}
+
+\bibitem{derivationns}
+  \url{https://en.wikipedia.org/wiki/Derivation_of_the_Navier%E2%80%93Stokes_equations}
+
+\end{thebibliography}
+
+\end{document}
