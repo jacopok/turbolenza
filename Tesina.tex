@@ -127,7 +127,7 @@ Dunque, la forma dell'equazione per ora è:
 \mathbf{s} = - \nabla p + \nabla \cdot \bm{\tau}
 \end{equation}
 
-\subparagraph{Pressione}
+\subparagraph{Pressione} (Serve questo pezzo?)
 
 Questo risultato ha senso anche Guardiamo la forza esercitata dalla pressione lungo una sola dimensione, come la $x$:
 
@@ -143,22 +143,39 @@ Dunque in tutte e tre le dimensioni abbiamo
 
 \subparagraph{Forza viscosa}
 
-La forza viscosa lungo una superficie $S = \text{d}y\text{d}z$ si può ricavare in funzione del parametro \emph{viscosità dinamica} $\mu$, che spesso dipende dalla temperatura:
+Consideriamo una sola direzione del cubetto $\mathrm{d} V$, ovvero due faccie parallele. Se il fluido che consideriamo è newtoniano, è stato osservato che:
 
 \begin{equation}
-F_x = \mu S \pderiv{\mathbf{v}}{x} = \mu \pderiv[2]{\mathbf{v}}{x} \mathrm{d}V
+\bm{\tau}_{ij} = \mu 
+    \left( 
+        \pderiv{\mathbf{v}_i}{x_j} + 
+        \pderiv{\mathbf{v}_j}{x_i}
+    \right)
 \end{equation}
 
-Dunque, definendo la viscosità \emph{cinematica} $\nu = \mu/\rho$:
+dove $\mu$ è la cosiddetta \emph{viscosità dinamica}.
+
+Troviamo poi che:
 
 \begin{equation}
-\mathbf{F} = \nu\rho \nabla^2 \mathbf{v} \mathrm{d}V
+\nabla \cdot \bm{\tau} =
+    \mu \left(
+        \pderiv{\bm{\tau}}{x_i}\mathbf{e}_j
+    \right) =
+    \mu \left(
+        \frac{\partial}{\partial x_i}        
+        \left(
+            \pderiv{\mathbf{v}_i}{x_j}+
+            \pderiv{\mathbf{v}_j}{x_i}+
+        \right)        
+        \mathbf{e}_j
+    \right) = 
 \end{equation}
 
-Possiamo scrivere che:
+e ricordando che per la conservazione della massa $\nabla \cdot \mathbf{v} = 0$ arriviamo a:
 
 \begin{equation}
-\int_{\Omega} \mathbf{s} \, \text{d} V = \int_{\Omega} \left( -\nabla p\, \mathrm{d} V + \nu\rho \nabla^2 \mathbf{v} \mathrm{d}V \right)
+\nabla \cdot \bm{\tau} = \mu \nabla ^2 \mathbf{v}
 \end{equation}
 
 \subsection{Formulazione}
