@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{comment}
 \usepackage{nicefrac}
 %\usepackage[margin=2cm]{geometry}
 \usepackage{amssymb}
@@ -98,10 +99,10 @@ Ignorando le \emph{body forces} (come la gravità), possiamo scrivere
 \mathbf{s} = \nabla \cdot \bm{\sigma}
 \end{equation}
 
-Dove $\bm{\sigma}_{ij}$ è un tensore del secondo ordine che include tutti gli sforzi sull'infinitesimo di volume $\mathrm{d}V$. 
+Dove $\bm{\sigma}$ è un tensore del secondo ordine che include tutti gli sforzi sull'infinitesimo di volume $\mathrm{d}V$. 
 
 \begin{equation}
-\bm{\sigma}_{ij} = \begin{pmatrix}
+\bm{\sigma} = \begin{pmatrix}
 \sigma_{xx} &  \tau_{xy} & \tau_{xz} \\
 \tau_{yx} &  \sigma_{yy} & \tau_{yz} \\
 \tau_{zx} &  \tau_{zy} & \sigma_{zz}
@@ -110,17 +111,17 @@ Dove $\bm{\sigma}_{ij}$ è un tensore del secondo ordine che include tutti gli s
 
 Lo possiamo dividere in pressione e forze viscose, ovvero scrivere consideriamo prima le componenti ortogonali e poi gli sforzi di taglio).
 
-Di fatto, scomponiamo $\bm{\sigma}_{ij}$ in:
+Scomponiamo quindi $\bm{\sigma}$ in:
 
 \begin{equation}
-\bm{\sigma}_{ij} = -p I_3 + \begin{pmatrix}
+\bm{\sigma} = -p I_3 + \begin{pmatrix}
 \sigma_{xx} + p &  \tau_{xy} & \tau_{xz} \\
 \tau_{yx} &  \sigma_{yy} + p & \tau_{yz} \\
 \tau_{zx} &  \tau_{zy} & \sigma_{zz} + p
 \end{pmatrix}
 \end{equation}
 
-Se definiamo la pressione come un meno un terzo della traccia di $\bm{\sigma}$ (possiamo farlo assumendo che il flusso sia isotropico), ci rimane $\bm{\sigma}_{ij} = -p I_3 + \bm{\tau}$. Intuitivamente, il primo termine rappresenta le forze che cercano di comprimere il volumetto, mentre il secondo quelle che tendono a distorcerlo.
+Se definiamo la pressione come un meno un terzo della traccia di $\bm{\sigma}$ (possiamo farlo assumendo che il flusso sia isotropico), ci rimane $\bm{\sigma} = -p I_3 + \bm{\tau}$. Intuitivamente, il primo termine rappresenta le forze che cercano di comprimere il volumetto, mentre il secondo quelle che tendono a distorcerlo.
 
 Dunque, la forma dell'equazione per ora è:
 
@@ -133,10 +134,10 @@ Dunque, la forma dell'equazione per ora è:
 Consideriamo una sola direzione del cubetto $\mathrm{d} V$, ovvero due faccie parallele. Se il fluido che consideriamo è newtoniano, è stato osservato che:
 
 \begin{equation}
-\bm{\tau}_{ij} = \mu 
+\tau_{ij} = \mu 
     \left( 
-        \pderiv{\mathbf{v}_i}{x_j} + 
-        \pderiv{\mathbf{v}_j}{x_i}
+        \pderiv{v_i}{x_j} + 
+        \pderiv{v_j}{x_i}
     \right)
 \end{equation}
 
@@ -146,14 +147,12 @@ Troviamo poi che:
 
 \begin{equation}
 \nabla \cdot \bm{\tau} =
-    \mu \left(
-        \pderiv{\bm{\tau}}{x_i}\mathbf{e}_j
-    \right) =
+    \pderiv{\tau_{ij}}{x_i}\mathbf{e}_j =
     \mu \left(
         \frac{\partial}{\partial x_i}        
         \left(
-            \pderiv{\mathbf{v}_i}{x_j}+
-            \pderiv{\mathbf{v}_j}{x_i}+
+            \pderiv{v_i}{x_j}+
+            \pderiv{v_j}{x_i}+
         \right)        
         \mathbf{e}_j
     \right) = 
