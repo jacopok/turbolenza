@@ -10,6 +10,7 @@
 \numberwithin{equation}{subsection}
 \usepackage{commath}
 \usepackage[italian]{babel}
+%\usepackage[extreme]{savetrees}
 \usepackage{bm}
 \usepackage{indentfirst}
 
@@ -88,7 +89,15 @@ Per la \ref{consmassa} il termine moltiplicato per $\mathbf{v}$ è pari a 0, dun
 \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) = \mathbf{s}
 \end{equation}
 
-L'integrale volumetrico del termine $\mathbf{s}$ comprende tutti gli altri tipi di forze che possono agire sull'infinitesimo di volume, che dividiamo in pressione e forze viscose (ovvero, nello \emph{stress tensor}
+L'integrale volumetrico del termine $\mathbf{s}$ comprende tutti gli altri tipi di forze che possono agire sull'infinitesimo di volume.
+
+Ignorando le \emph{body forces} (come la gravità), possiamo scrivere
+
+\begin{equation}
+\mathbf{s} = \nabla \cdot \bm{\sigma}
+\end{equation}
+
+Dove $\bm{\sigma}_{ij}$ è un tensore del secondo ordine che include tutti gli sforzi sull'infinitesimo di volume $\mathrm{d}V$. 
 
 \begin{equation}
 \bm{\sigma}_{ij} = \begin{pmatrix}
@@ -98,11 +107,29 @@ L'integrale volumetrico del termine $\mathbf{s}$ comprende tutti gli altri tipi 
 \end{pmatrix}
 \end{equation}
 
-consideriamo prima le componenti ortogonali e poi gli sforzi di taglio).
+Lo possiamo dividere in pressione e forze viscose, ovvero scrivere consideriamo prima le componenti ortogonali e poi gli sforzi di taglio).
+
+Di fatto, scomponiamo $\bm{\sigma}_{ij}$ in:
+
+\begin{equation}
+\bm{\sigma}_{ij} = -p I_3 + \begin{pmatrix}
+\sigma_{xx} + p &  \tau_{xy} & \tau_{xz} \\
+\tau_{yx} &  \sigma_{yy} + p & \tau_{yz} \\
+\tau_{zx} &  \tau_{zy} & \sigma_{zz} + p
+\end{pmatrix}
+\end{equation}
+
+Se definiamo la pressione come un meno un terzo della traccia di $\bm{\sigma}$, ci rimane $\bm{\sigma}_{ij} = -p I_3 + \bm{\tau}$. Intuitivamente, il primo termine rappresenta le forze che cercano di comprimere il volumetto, mentre il secondo quelle che tendono a distorcerlo.
+
+Dunque, la forma dell'equazione per ora è:
+
+\begin{equation}
+\mathbf{s} = - \nabla p + \nabla \cdot \bm{\tau}
+\end{equation}
 
 \subparagraph{Pressione}
 
-Guardiamo la forza esercitata dalla pressione lungo una sola dimensione, come la $x$:
+Questo risultato ha senso anche Guardiamo la forza esercitata dalla pressione lungo una sola dimensione, come la $x$:
 
 \begin{equation}
 F_x =\left(p \text{d}y \text{d}z - \left(p + \pderiv{p}{x}\text{d}x\right)\text{d}y\text{d}z\right) \mathbf{\hat{i}} = -\pderiv{p}{x}\text{d}V\mathbf{\hat{i}}
@@ -262,6 +289,9 @@ Parentesi angolate: media?
 
 \bibitem{derivationns}
   \url{https://en.wikipedia.org/wiki/Derivation_of_the_Navier%E2%80%93Stokes_equations}
+
+\bibitem{tensorcalculus}
+  \url{http://homepages.engineering.auckland.ac.nz/~pkel015/SolidMechanicsBooks/Part_III/Chapter_1_Vectors_Tensors/Vectors_Tensors_14_Tensor_Calculus.pdf}
 
 \end{thebibliography}
 
