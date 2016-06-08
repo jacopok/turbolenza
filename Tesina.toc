@@ -4,10 +4,9 @@
 \contentsline {subsection}{\numberline {1.1}Ricavarle}{1}{subsection.1.1}
 \contentsline {paragraph}{Massa}{1}{section*.1}
 \contentsline {paragraph}{Quantit\IeC {\`a} di moto}{2}{section*.2}
-\contentsline {subparagraph}{Pressione}{3}{section*.3}
-\contentsline {subparagraph}{Forza viscosa}{3}{section*.4}
-\contentsline {subsection}{\numberline {1.2}Formulazione}{4}{subsection.1.2}
+\contentsline {subparagraph}{Forza viscosa}{3}{section*.3}
+\contentsline {subsection}{\numberline {1.2}Formulazione}{3}{subsection.1.2}
 \contentsline {subsection}{\numberline {1.3}Il numero di Reynolds}{4}{subsection.1.3}
-\contentsline {paragraph}{Ricaviamolo}{4}{section*.5}
-\contentsline {paragraph}{Valutazioni qualitative}{5}{section*.6}
+\contentsline {paragraph}{Ricaviamolo}{4}{section*.4}
+\contentsline {paragraph}{Valutazioni qualitative}{5}{section*.5}
 \contentsline {section}{\numberline {2}Il flusso turbolento}{5}{section.2}
