@@ -9,7 +9,7 @@
 \usepackage{accents}
 \usepackage{amsthm}
 \usepackage[pdftex, pdfborderstyle={/S/U/W 0}]{hyperref}
-\numberwithin{equation}{subsection}
+\numberwithin{equation}{section}
 \usepackage{commath}
 \usepackage[italian]{babel}
 %\usepackage[extreme]{savetrees}
@@ -31,6 +31,12 @@ Liceo Scientifico M. Grigoletti}
 \begin{document}
 
 \maketitle
+
+\begin{abstract}
+Partiamo da una trattazione delle equazioni di Navier-Stokes (per un fluido non comprimibile, ignorando le forze esterne), per poi capire cos'è il regime turbolento e quali sono le basi della teoria proposta da Kolmogorov nel 1941.
+
+Così, arriviamo allo studio \cite{study2006}, che applica questa teoria (invece che alla velocità di un fluido) alla luminanza dei quadri di Van Gogh, trovando degli interessanti collegamenti.
+\end{abstract}
 
 \section{Navier-Stokes}
 
@@ -138,7 +144,7 @@ Consideriamo una sola direzione del cubetto $\mathrm{d} V$, ovvero due faccie pa
     \left( 
         \pderiv{v_i}{x_j} + 
         \pderiv{v_j}{x_i}
-    \right)
+    \right) \label{fvisc}
 \end{equation}
 
 dove $\mu$ è la cosiddetta \emph{viscosità dinamica}.
@@ -170,10 +176,17 @@ Sinteticamente, dunque, le equazioni di Navier-Stokes si possono esprimere così
 
 \begin{subequations}
 \begin{align}
-\frac{\partial \mathbf{v}}{\partial t} + (\nabla \mathbf{v}) \mathbf{v} &= -\frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{v} \label{navier-stokes} \\
+\frac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot (\nabla \mathbf{v})  &= -\frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{v} \label{navier-stokes} \\
 \nabla \cdot \mathbf{v} &= 0
 \end{align}
 \end{subequations}
+
+Possiamo introdurre l'operatore $\Dif / \Dif t$:
+
+\begin{equation}
+\frac{\Dif \mathbf{a}}{\Dif t} =
+\pderiv{\mathbf{a}}{t} + \mathbf{v} \cdot (\nabla \mathbf{a}) 
+\end{equation}
 
 Oppure, scrivendo tutte le derivate parziali esplicitamente, se il vettore velocità è $\mathbf{v} (u, v, w)$:
 
@@ -227,13 +240,13 @@ Ridefiniamo poi:
 Ricaviamo dunque l'equazione adimensionalizzata: 
 
 \begin{equation}
-\frac{\partial \mathbf{v'}}{\partial t'} + (\nabla' \mathbf{v'}) \mathbf{v'} = -\nabla' p' + \frac{\mu}{\rho L v} \nabla'^2 \mathbf{v'}
+\frac{\partial \mathbf{v'}}{\partial t'} +\mathbf{v'} \cdot (\nabla' \mathbf{v'})  = -\nabla' p' + \frac{\mu}{\rho L v} \nabla'^2 \mathbf{v'}
 \end{equation}
 
 Ovvero, togliendo i primi:
 
 \begin{equation}
-\frac{\partial \mathbf{v}}{\partial t} + (\nabla \mathbf{v}) \mathbf{v} = -\nabla p + \frac{1}{\text{Re}} \nabla^2 \mathbf{v}
+\frac{\partial \mathbf{v}}{\partial t} +\mathbf{v} \cdot (\nabla \mathbf{v}) = -\nabla p + \frac{1}{\text{Re}} \nabla^2 \mathbf{v}
 \end{equation}
 
 Si può dunque vedere che, al tendere di Re all'infinito, il termine viscoso scompare, rendendo il regime completamente inerziale.
@@ -247,6 +260,49 @@ Si può dunque vedere che, al tendere di Re all'infinito, il termine viscoso sco
 
 \section{Il flusso turbolento}
 
+Dividiamo la velocità in una parte media e una fluttuazione: $\mathbf{v} = \mathbf{\overline{v}} + \mathbf{v'}$, dove $\mathbf{v'}$ è la fluttuazione, ovvero $\mathbf{\overline{v'}} =  0$, e facciamo lo stesso per la pressione ($p = \overline{p} + p'$).
+
+Per media $\overline{\varphi}$ di una quantità qualsiasi $\varphi (t)$ in un punto fisso dello spazio, intendiamo:
+
+\begin{equation}
+\overline{\varphi} = \frac{1}{\vartheta} \int^{t_0 + \vartheta}_{0} \varphi \, \text{d}t
+\end{equation}
+
+Applicando le proprietà della media, possiamo ricavare la versione \emph{mediata} delle equazioni di Navier-Stokes:
+
+\begin{subequations}
+\begin{align}
+\frac{\Dif \mathbf{\overline{v}}}{\Dif t}   &= -\frac{\nabla \overline{p}}{\rho} + \nu \nabla^2 \mathbf{\overline{v}} - \nabla \cdot \left(
+\overline{\mathbf{v'}\mathbf{v'}}
+\right)\\
+\nabla \cdot \mathbf{\overline{v}} &= 0
+\end{align}
+\end{subequations}
+
+\paragraph{Viscosità turbolenta}
+
+Consideriamo il tensore $\overline{\mathbf{v'}\mathbf{v'}} = \bm{\sigma}_T$ come parte di $\bm{\tau}$, il tensore che prima abbiamo considerato come componente viscosa, ovvero assimiliamo gli effetti della turbolenza ad un incremento della viscosità (non reale, ma efficace).
+
+Se prima avevamo trovato la \ref{fvisc}, sperimentalmente è stata anche ricavato:
+
+\begin{equation}
+\sigma_{Tij} = - \rho \overline{v'_i v'_j} = \mu_t \left(
+\pderiv{\overline{v_i}}{x_j} + \pderiv{\overline{v_j}}{x_i}
+\right)
+\end{equation}
+
+Dove $\mu_T$, la \emph{viscosità turbolenta}, non è una proprietà del fluido ma  dipende dallo stato della turbolenza.
+
+L'equazione di conservazione della quantità di moto si trasforma quindi in:
+
+\begin{equation}
+\frac{\Dif \mathbf{\overline{v}}}{\Dif t}  = -\frac{\nabla \overline{p}}{\rho} + (\nu + \nu_T ) \nabla^2 \mathbf{\overline{v}} 
+\end{equation}
+
+dove chiaramente $\nu_T = \mu_T / \rho$
+
+\subsection{La teoria di Kolmogorov}
+
 \begin{verse}
 Big whorls have little whorls, \\
 which feed on their velocity; \\
@@ -256,15 +312,10 @@ And so on to viscosity. \cite{richardson}
 
 Il flusso turbolento è composto da vortici di diverse dimensioni. L'energia viene trasmessa dai più grandi ai più piccoli, fino a quando non viene dissipata completamente.
 
-Dividiamo la velocità in una parte media e una fluttuazione: $\mathbf{v} = \mathbf{U} + \mathbf{u}$, dove $\mathbf{u}$ è la fluttuazione, ovvero $\mathbf{\bar{u}} = 0$
+Chiamiamo $d$ dimensione del vortice e $\accentset{\circ}{v}$ la sua velocità orbitale: osserviamo che la seconda è funzione della prima ($\accentset{\circ}{v} = f(d)$).
 
-Parentesi angolate: media?
-
-$d$ dimensione del vortice, $\accentset{\circ}{v}$ velocità orbitale: $\accentset{\circ}{v} = f(d)$
-
-\emph{Cascata di energia della turbolenza}: descrizione a parole. Turbolenza statisticamente omogenea $\implies$ passaggi di energia da una scala ad un'altra uguali: $\epsilon (d_{\text{max}}) = \epsilon (d_{\text{min}})$
-
-$\epsilon =$ energia fornita / (massa unitaria $\times$ tempo), ovvero energia trasmessa di scala in scala, ovvero energia dissipata.
+Il fatto che la turbolenza sia statisticamente omogenea implica che i passaggi di energia da una scala ad un'altra siano uguali: $\epsilon (d_{\text{max}}) = \epsilon (d_{\text{min}})$, dove
+$\epsilon =$ energia fornita / (massa unitaria $\times$ tempo), ovvero energia trasmessa di scala in scala, ovvero energia dissipata. Come dimensioni:
 
 \begin{equation}
 [\epsilon ] = L^2 T^{-3}
@@ -316,16 +367,6 @@ E_k (k) = B \epsilon^{2/3} k^{-5/3}
 
 La ``legge dei $-5/3$'' funziona bene nell'area di mezzo, lontana dalle scale estreme.
 
-\subsection{Viscosità turbolenta}
-
-Possiamo inoltre assimilare gli effetti della turbolenza ad un incremento della viscosità (non reale, ma efficace). $\nu_T = \nu + \nu'$.
-
-Definiamo la \emph{velocità di frizione} $v_{\ast} $
-
-\begin{equation}
-v_{\ast} = \sqrt{\frac{\tau_b}{\rho}}
-\end{equation}
-
 \subsection{La funzione di struttura}
 
 Definiamo la funzione di struttura di ordine $n$: $S_n (\mathbf{R}) = \left\langle
@@ -342,7 +383,7 @@ Dalla \ref{scaling} ricaviamo che lo \emph{scaling} di $S_2 (\mathbf{R})$ è lo 
 
 Mettono in relazione la PDF delle fluttuazioni di luminanza (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF di un flusso turbolento secondo la PDF delle differenze di velocità predette dalla teoria di Kolmogorov.
 
-La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento. 
+La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.
 
 \tableofcontents
 
@@ -420,7 +461,7 @@ La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) 
   \emph{Fluidodinamica} (dispense), A. A. 2005--2006, II semestre: capp. 4, 5, 7, 9.
   
 \bibitem{engr}
-  Definizioni e cose sul prodotto interno.
+  %Definizioni e cose sul prodotto interno.
   \url{https://www.engr.uky.edu/~acfd/lctr-notes634.pdf}  
   
 \end{thebibliography}
