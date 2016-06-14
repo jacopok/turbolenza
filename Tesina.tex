@@ -55,7 +55,7 @@ Applicando il teorema della divergenza, possiamo rendere tutti gli integrali vol
 Se prendiamo come $\phi$ la densità $\rho$, per la conservazione della massa otteniamo:
 
 \begin{equation}
-\frac{\partial \rho}{\partial t} + \nabla \cdot ( \phi \mathbf{v} ) = 0 \label{consmassa}
+\frac{\partial \rho}{\partial t} + \nabla \cdot ( \rho \mathbf{v} ) = 0 \label{consmassa}
 \end{equation}
 
 Postulando che il fluido non possa essere compresso, ovvero che $\frac{\text{d} \rho}{\text{d} t} = 0$, ricaviamo:
@@ -155,7 +155,7 @@ Troviamo poi che:
             \pderiv{v_j}{x_i}+
         \right)        
         \mathbf{e}_j
-    \right) = 
+    \right) 
 \end{equation}
 
 e ricordando che per la conservazione della massa $\nabla \cdot \mathbf{v} = 0$ arriviamo a:
@@ -247,6 +247,13 @@ Si può dunque vedere che, al tendere di Re all'infinito, il termine viscoso sco
 
 \section{Il flusso turbolento}
 
+\begin{verse}
+Big whorls have little whorls, \\
+which feed on their velocity; \\
+And little whorls have lesser whorls, \\
+And so on to viscosity. \cite{richardson}
+\end{verse}
+
 Il flusso turbolento è composto da vortici di diverse dimensioni. L'energia viene trasmessa dai più grandi ai più piccoli, fino a quando non viene dissipata completamente.
 
 Dividiamo la velocità in una parte media e una fluttuazione: $\mathbf{v} = \mathbf{U} + \mathbf{u}$, dove $\mathbf{u}$ è la fluttuazione, ovvero $\mathbf{\bar{u}} = 0$
@@ -266,7 +273,7 @@ $\epsilon =$ energia fornita / (massa unitaria $\times$ tempo), ovvero energia t
 Assumiamo che $\accentset{\circ}{v} \propto (\epsilon d)^k$. Dimensionalmente, otteniamo:
 
 \begin{equation}
-\accentset{\circ}{v} = A (\epsilon d)^{1/3}
+\accentset{\circ}{v} = A (\epsilon d)^{1/3} \label{scaling}
 \end{equation}
 
 La turbolenza avviene fra $d_{\text{max}}$ e $d_{\text{min}}$. La prima è la dimensione del sistema, la seconda invece (postuliamo) dipende solo da $\epsilon$ e $\nu$. Dimensionalmente:
@@ -311,7 +318,31 @@ La ``legge dei $-5/3$'' funziona bene nell'area di mezzo, lontana dalle scale es
 
 \subsection{Viscosità turbolenta}
 
-Assumiamo che
+Possiamo inoltre assimilare gli effetti della turbolenza ad un incremento della viscosità (non reale, ma efficace). $\nu_T = \nu + \nu'$.
+
+Definiamo la \emph{velocità di frizione} $v_{\ast} $
+
+\begin{equation}
+v_{\ast} = \sqrt{\frac{\tau_b}{\rho}}
+\end{equation}
+
+\subsection{La funzione di struttura}
+
+Definiamo la funzione di struttura di ordine $n$: $S_n (\mathbf{R}) = \left\langle
+    (\delta _{v_R} )^n
+ \right\rangle
+$, dove 
+$ \delta _{v_R} = v(\mathbf{r} + \mathbf{R}) - v( \mathbf{r})$. $v$ qui è la componente della velocità nella direzione di $\mathbf{R}$, un qualsiasi vettore che va da una posizione ad un'altra dove misuriamo la velocità.
+
+La funzione di struttura di secondo ordine può essere associata all'energia delle fluttuazioni (divisa per la massa), in quanto consiste in una velocità al quadrato.
+
+Dalla \ref{scaling} ricaviamo che lo \emph{scaling} di $S_2 (\mathbf{R})$ è lo stesso di $(\epsilon d)^{2/3}$, dove $d = \abs{\mathbf{R}}$
+
+\section{Lo studio degli spagnoli}
+
+Mettono in relazione la PDF delle fluttuazioni di luminanza (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF di un flusso turbolento secondo la PDF delle differenze di velocità predette dalla teoria di Kolmogorov.
+
+La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento. 
 
 \tableofcontents
 
@@ -346,12 +377,19 @@ Assumiamo che
   \url{http://www.nature.com/news/2006/060703/full/news060703-17.html#close},
   2006,
   su \emph{``Nature''}.
+  
+\bibitem{richardson}
+  Lewis Fry Richardson, 1922.
+  \url{http://www.nature.com/nphys/journal/v12/n3/full/nphys3697.html}
 
 \bibitem{heisenberg}  
   \url{http://scienceworld.wolfram.com/biography/Heisenberg.html}
 
 \bibitem{derivationns}
   \url{https://en.wikipedia.org/wiki/Derivation_of_the_Navier%E2%80%93Stokes_equations}
+  
+\bibitem{nseqs}
+  \url{https://en.wikipedia.org/wiki/Navier–Stokes_equations}
 
 \bibitem{tensorcalculus}
   \url{http://homepages.engineering.auckland.ac.nz/~pkel015/SolidMechanicsBooks/Part_III/Chapter_1_Vectors_Tensors/Vectors_Tensors_14_Tensor_Calculus.pdf}
@@ -362,6 +400,29 @@ Assumiamo che
 \bibitem{fluiddynamics}
   \url{https://www.materials.uoc.gr/el/grad/courses/METY101/FLUID_DYNAMICS_CRETE.pdf}     
 
+\bibitem{sholar-turb}
+  \url{http://www.scholarpedia.org/article/Turbulence}
+  
+\bibitem{viscousstresstensor}
+  \url{https://en.wikipedia.org/wiki/Viscous_stress_tensor}
+
+\bibitem{innerp}
+  \url{https://en.wikipedia.org/wiki/Inner_product_space}
+  
+\bibitem{epsilon}  
+  \url{http://www.cfd-online.com/Wiki/Turbulence_dissipation_rate}  
+  
+\bibitem{pdf}
+  \url{https://en.wikipedia.org/wiki/Probability_density_function}
+  
+\bibitem{dispense}
+  Valentino Pediroda, 
+  \emph{Fluidodinamica} (dispense), A. A. 2005--2006, II semestre: capp. 4, 5, 7, 9.
+  
+\bibitem{engr}
+  Definizioni e cose sul prodotto interno.
+  \url{https://www.engr.uky.edu/~acfd/lctr-notes634.pdf}  
+  
 \end{thebibliography}
 
 \end{document}

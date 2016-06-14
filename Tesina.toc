@@ -10,5 +10,7 @@
 \contentsline {paragraph}{Ricaviamolo}{4}{section*.4}
 \contentsline {paragraph}{Valutazioni qualitative}{5}{section*.5}
 \contentsline {section}{\numberline {2}Il flusso turbolento}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}Spettro di energia}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.1}Spettro di energia}{6}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Viscosit\IeC {\`a} turbolenta}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}La funzione di struttura}{6}{subsection.2.3}
+\contentsline {section}{\numberline {3}Lo studio degli spagnoli}{7}{section.3}
