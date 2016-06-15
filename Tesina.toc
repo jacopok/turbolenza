@@ -14,4 +14,6 @@
 \contentsline {subsection}{\numberline {2.1}La teoria di Kolmogorov}{6}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Spettro di energia}{7}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}La funzione di struttura}{7}{subsection.2.3}
-\contentsline {section}{\numberline {3}Lo studio degli spagnoli}{8}{section.3}
+\contentsline {paragraph}{Distribuzione log-normale}{8}{section*.7}
+\contentsline {subsection}{\numberline {2.4}La distribuzione di $\epsilon $}{8}{subsection.2.4}
+\contentsline {section}{\numberline {3}La teoria di Kolmogorov applicata all'arte}{8}{section.3}

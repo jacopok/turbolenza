@@ -19,6 +19,9 @@
 \usepackage{cool}
 \Style{DSymb={\mathrm d},DShorten=true,IntegrateDifferentialDSymb=\mathrm{d}}
 
+\usepackage{microtype}
+\usepackage{cleveref}
+
 \usepackage{url}
 \newcommand*{\defeq}{\stackrel{\text{def}}{=}}
 \author{Jacopo Tissino \\
@@ -379,13 +382,66 @@ $ \delta _{v_R} = v(\mathbf{r} + \mathbf{R}) - v( \mathbf{r})$. $v$ qui è la co
 
 La funzione di struttura di secondo ordine può essere associata all'energia delle fluttuazioni (divisa per la massa), in quanto consiste in una velocità al quadrato.
 
-Dalla \ref{scaling} ricaviamo che lo \emph{scaling} di $S_2 (\mathbf{R})$ è lo stesso di $(\epsilon d)^{2/3}$, dove $d = \abs{\mathbf{R}}$
+Dalla \ref{scaling} ricaviamo che lo \emph{scaling} di $S_2 (\mathbf{R})$ è lo stesso di $(\epsilon d)^{2/3}$, dove $d = \abs{\mathbf{R}}$.
 
-\section{Lo studio degli spagnoli}
+Inoltre, Kolmogorov ha ipotizzato che una generica $S_n (\mathbf{R})$ scali con:
 
-Mettono in relazione la PDF delle fluttuazioni di luminanza (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF di un flusso turbolento secondo la PDF delle differenze di velocità predette dalla teoria di Kolmogorov.
+\begin{equation}
+S_n (\mathbf{R}) \propto R^{\frac{n}{3}} \label{scalinggenerico}
+\end{equation}
 
-La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.
+\paragraph{Distribuzione log-normale}
+
+Abbiamo una distribuzione log-normale della variabile $x$ quando $\ln (x)$ ha una distribuzione normale: quindi, se la media è $\mu$ e la varianza è $\sigma ^2$ la PDF è
+
+\begin{equation}
+f(x) =
+\frac{1}{x\sigma \sqrt{2\pi}}
+\exp \left[
+-\frac{(\ln (x) - \mu)^2}{2\sigma ^2}
+\right]
+\end{equation}
+
+\subsection{La distribuzione di $\epsilon$}
+
+Kolmogorov nel 1962 \cite[pag.~115]{scalingbuono} ipotizzò che la media del tasso di dissipazione $\epsilon$ in un volume di raggio $r$
+
+\begin{equation}
+\epsilon_r (\mathbf{x}, t) =
+\frac{6}{\pi r^3}
+\int_{|\mathbf{k}| \leq r/2} \epsilon (\mathbf{x} + \mathbf{h}, t) \, \text{d} \mathbf{h}
+\end{equation}
+
+avesse una distribuzione log-normale, con la varianza di $\ln (\epsilon_r)$ data da:
+
+\begin{equation}
+\sigma ^2 _r = A + \mu \ln \left(
+\frac{L}{r}
+\right)
+\end{equation}
+
+dove la costante $\mu$ è universale, $A$ dipende dalla geometria del fluido, e $L$ è la scala del fenomeno. 
+
+Poiché, come abbiamo visto, c'è una correlazione fra $\epsilon$ e la funzione di struttura, abbiamo una distribuzione log-normale anche per quest'ultima.
+
+\section{La teoria di Kolmogorov applicata all'arte}
+
+Un team di scienziati spagnoli \cite{study2006} ha messo in relazione la PDF delle fluttuazioni di luminanza\footnote{La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.} (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF delle differenze di velocità predette dalla teoria di Kolmogorov: per $v$, quindi, ora intendiamo luminanza, misurata come funzione dalle componenti RGB: $v = 0.299 R + 0.587 G + 0.144B$ (i parametri derivano dalla sensibilità umana alle varie componenti della luce).
+
+La quantità analizzata, $P_R(\delta v_R)$, è in realtà normalizzata:
+
+\begin{equation}
+P_R(\delta v_R)=
+\frac{\delta v_R}{\sqrt{\left\langle
+(\delta v_R )^2
+\right\rangle}}
+\end{equation}
+
+(dove la quantità $\left(\left\langle
+(\delta v_R )^2
+\right\rangle\right)^{1/2}$ è la norma del vettore $\delta v_R$).
+
+Inoltre, anche la previsione dell'equazione \ref{scalinggenerico} è confermata: 
 
 \tableofcontents
 
@@ -465,6 +521,16 @@ La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) 
 \bibitem{engr}
   %Definizioni e cose sul prodotto interno.
   \url{https://www.engr.uky.edu/~acfd/lctr-notes634.pdf}  
+  
+\bibitem{pdfvr}
+  B. Castaing (Centre de Recherches sur les Très Basses Températures, CNRS, BP 166 X, 38042 Grenoble Cedex, France), \\
+  Y. Gagne, E.J. Hopfinger (Institut de Mécanique de Grenoble, UMR 101, BP 53 X, 38041 Grenoble Cedex, France), \\
+  \emph{Velocity probability density functions of high Reynolds number turbulence}, \\
+  \url{http://www.sciencedirect.com/science/article/pii/016727899090035N}, \\
+  1990 (solo il sommario).
+  
+\bibitem{scalingbuono}
+  \url{http://research.me.udel.edu/~lwang/reprints/Wang_etal_JFM_1996.pdf}
   
 \end{thebibliography}
 
