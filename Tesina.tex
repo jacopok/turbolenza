@@ -1,6 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage{amsfonts}
 \usepackage{comment}
 \usepackage{nicefrac}
@@ -12,6 +13,7 @@
 \numberwithin{equation}{section}
 \usepackage{commath}
 \usepackage[italian]{babel}
+\usepackage{graphicx}
 %\usepackage[extreme]{savetrees}
 \usepackage{bm}
 \usepackage{indentfirst}
@@ -384,10 +386,9 @@ La funzione di struttura di secondo ordine può essere associata all'energia del
 
 Dalla \ref{scaling} ricaviamo che lo \emph{scaling} di $S_2 (\mathbf{R})$ è lo stesso di $(\epsilon d)^{2/3}$, dove $d = \abs{\mathbf{R}}$.
 
-Inoltre, Kolmogorov ha ipotizzato che una generica $S_n (\mathbf{R})$ scali con:
-
+Inoltre, Kolmogorov ha ipotizzato che una generica $S_n (\mathbf{R})$ scali con: \\*
 \begin{equation}
-S_n (\mathbf{R}) \propto R^{\frac{n}{3}} \label{scalinggenerico}
+S_n (\mathbf{R}) \propto R^{\xi_n}, \qquad \xi_n =\frac{n}{3} \label{scalinggenerico}
 \end{equation}
 
 \paragraph{Distribuzione log-normale}
@@ -428,6 +429,15 @@ Poiché, come abbiamo visto, c'è una correlazione fra $\epsilon$ e la funzione 
 
 Un team di scienziati spagnoli \cite{study2006} ha messo in relazione la PDF delle fluttuazioni di luminanza\footnote{La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.} (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF delle differenze di velocità predette dalla teoria di Kolmogorov: per $v$, quindi, ora intendiamo luminanza, misurata come funzione dalle componenti RGB: $v = 0.299 R + 0.587 G + 0.144B$ (i parametri derivano dalla sensibilità umana alle varie componenti della luce).
 
+I risultati sono mostrati nella figura \ref{gaussians}, 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{gauss.png}
+    \caption{Densità di probabilità della variazione di luminanza per diverse distanze $R_i = 60, 240, 400, 600, 800, 1200$ dal basso in alto.}
+    \label{gaussians}
+\end{figure}
+
 La quantità analizzata, $P_R(\delta v_R)$, è in realtà normalizzata:
 
 \begin{equation}
@@ -439,9 +449,33 @@ P_R(\delta v_R)=
 
 (dove la quantità $\left(\left\langle
 (\delta v_R )^2
-\right\rangle\right)^{1/2}$ è la norma del vettore $\delta v_R$).
+\right\rangle\right)^{1/2} = \norm{\delta v}$ è la norma del vettore $\delta v_R$).
 
-Inoltre, anche la previsione dell'equazione \ref{scalinggenerico} è confermata: 
+Inoltre, anche la previsione dell'equazione \ref{scalinggenerico} è confermata, come possiamo vedere dalla figura \ref{scalingpower}.
+
+Entrambi questi risultati sono riferiti al quadro ``Notte Stellata'' (\ref{starrynight}), del 1889
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{scalingpower.png}
+    \caption{\emph{Scaling} di funzioni di struttura di ordine da 1 a 5}
+    \label{scalingpower}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.15]{the-starry-night-1889.jpg}
+    \caption{\emph{Notte Stellata}.}
+    \label{starrynight}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
+    \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
+Telescope}}
+    \label{galaxy}
+\end{figure}
 
 \tableofcontents
 
