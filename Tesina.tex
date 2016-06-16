@@ -43,6 +43,41 @@ Partiamo da una trattazione delle equazioni di Navier-Stokes (per un fluido non 
 Così, arriviamo allo studio \cite{study2006}, che applica questa teoria (invece che alla velocità di un fluido) alla luminanza dei quadri di Van Gogh, trovando degli interessanti collegamenti.
 \end{abstract}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.15]{the-starry-night-1889.jpg}
+    \caption{\emph{Notte Stellata}.}
+    \label{starrynight}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.12]{wheatfield.jpg}
+    \caption{\emph{Wheatfield with crows}.}
+    \label{wheatfield}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.12]{road_cypress.jpg}
+    \caption{\emph{Road with cypress and star}.}
+    \label{road}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.12]{selfportrait.jpg}
+    \caption{\emph{Self-portrait with pipe and bandaged ear}.}
+    \label{self}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{scalingpower.png}
+    \caption{\emph{Scaling} di funzioni di struttura di ordine da 1 a 5}
+    \label{scalingpower}
+\end{figure}
+
 \section{Navier-Stokes}
 
 \subsection{Ricavarle}
@@ -265,6 +300,8 @@ Si può dunque vedere che, al tendere di Re all'infinito, il termine viscoso sco
 
 \section{Il flusso turbolento}
 
+Quando il moto diventa turbolento, a quello principale della direzione della velocità media si sovrappongono moti secondari in direzioni perpendicolari, che provocano rimescolamento e vortici \cite{dispense}.
+
 Dividiamo la velocità in una parte media e una fluttuazione: $\mathbf{v} = \mathbf{\overline{v}} + \mathbf{v'}$, dove $\mathbf{v'}$ è la fluttuazione, ovvero $\mathbf{\overline{v'}} =  0$, e facciamo lo stesso per la pressione ($p = \overline{p} + p'$).
 
 Per media $\overline{\varphi}$ di una quantità qualsiasi $\varphi (t)$ in un punto fisso dello spazio, intendiamo:
@@ -308,6 +345,8 @@ dove chiaramente $\nu_T = \mu_T / \rho$
 
 \subsection{La teoria di Kolmogorov}
 
+Il flusso turbolento è composto da vortici di diverse dimensioni. L'energia viene trasmessa dai più grandi ai più piccoli, fino a quando non viene dissipata completamente dalla frizione viscosa. Questo è stato espresso dal poeta Lewis Fry Richardson:
+
 \begin{verse}
 Big whorls have little whorls, \\
 which feed on their velocity; \\
@@ -315,7 +354,6 @@ And little whorls have lesser whorls, \\
 And so on to viscosity. \cite{richardson}
 \end{verse}
 
-Il flusso turbolento è composto da vortici di diverse dimensioni. L'energia viene trasmessa dai più grandi ai più piccoli, fino a quando non viene dissipata completamente.
 
 Chiamiamo $d$ dimensione del vortice e $\accentset{\circ}{v}$ la sua velocità orbitale: osserviamo che la seconda è funzione della prima ($\accentset{\circ}{v} = f(d)$).
 
@@ -427,6 +465,36 @@ Poiché, come abbiamo visto, c'è una correlazione fra $\epsilon$ e la funzione 
 
 \section{La teoria di Kolmogorov applicata all'arte}
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{PDF_wheat.png}
+    \caption{PDF di \emph{Wheatfield with crows}.}
+    \label{wheatfieldpdf}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{PDF_road.png}
+    \caption{PDF di \emph{Road with cypress and star}.}
+    \label{roadpdf}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{PDF_self_portrait.png}
+    \caption{PDF di \emph{Self-portrait with pipe and bandaged ear}.}
+    \label{selfpdf}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
+    \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
+Telescope}}
+    \label{galaxy}
+\end{figure}
+
+
 Un team di scienziati spagnoli \cite{study2006} ha messo in relazione la PDF delle fluttuazioni di luminanza\footnote{La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.} (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF delle differenze di velocità predette dalla teoria di Kolmogorov: per $v$, quindi, ora intendiamo luminanza, misurata come funzione dalle componenti RGB: $v = 0.299 R + 0.587 G + 0.144B$ (i parametri derivano dalla sensibilità umana alle varie componenti della luce).
 
 I risultati sono mostrati nella figura \ref{gaussians}, 
@@ -434,7 +502,7 @@ I risultati sono mostrati nella figura \ref{gaussians},
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{gauss.png}
-    \caption{Densità di probabilità della variazione di luminanza per diverse distanze $R_i = 60, 240, 400, 600, 800, 1200$ dal basso in alto.}
+    \caption{Densità di probabilità della variazione di luminanza di \emph{Starry night} per diverse distanze $R_i = 60, 240, 400, 600, 800, 1200$ dal basso in alto.}
     \label{gaussians}
 \end{figure}
 
@@ -449,33 +517,21 @@ P_R(\delta v_R)=
 
 (dove la quantità $\left(\left\langle
 (\delta v_R )^2
-\right\rangle\right)^{1/2} = \norm{\delta v}$ è la norma del vettore $\delta v_R$).
+\right\rangle\right)^{1/2} = \norm{\delta v_R}$ è la norma del vettore $\delta v_R$).
 
 Inoltre, anche la previsione dell'equazione \ref{scalinggenerico} è confermata, come possiamo vedere dalla figura \ref{scalingpower}.
 
-Entrambi questi risultati sono riferiti al quadro ``Notte Stellata'' (\ref{starrynight}), del 1889
+Entrambi questi risultati sono riferiti al quadro ``Notte Stellata'' (\ref{starrynight}), del 1889, ma gli scienziati spagnoli hanno analizzato altri tre quadri:
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.3]{scalingpower.png}
-    \caption{\emph{Scaling} di funzioni di struttura di ordine da 1 a 5}
-    \label{scalingpower}
-\end{figure}
+\begin{itemize}
+    \item \emph{Wheatfield with crows}, del 1890 (figura \ref{wheatfield}, PDF nella figura \ref{wheatfieldpdf});
+    \item \emph{Road with cypress and star}, del 1890 (figura \ref{road}, PDF nella figura \ref{roadpdf});
+    \item \emph{Self-portrait with pipe and bandaged ear}, del 1889 (figura \ref{self}, PDF nella figura \ref{selfpdf}).
+\end{itemize}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.15]{the-starry-night-1889.jpg}
-    \caption{\emph{Notte Stellata}.}
-    \label{starrynight}
-\end{figure}
+Le PDF dei primi due sono chiaramente riconducibili a curve gaussiane, come predetto dalla teoria di Kolmogorov, e infatti questi quadri presentano il distintivo aspetto ``turbolento'' che spesso associamo a questo artista; al contrario, la PDF del terzo quadro è estremamente distante dalla gaussiana prevista, malgrado siano presenti ``avvolgimenti'' nella rappresentazione del fumo della pipa (fenomemo effettivamente turbolento nella realtà).
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
-    \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
-Telescope}}
-    \label{galaxy}
-\end{figure}
+L'ultimo quadro è stato dipinto agli inizi del 1889, poco dopo il noto episodio del 23 Dicembre 1888 in cui Van Gogh si mutilò parte dell'orecchio. Fu forzatamente ammesso in un ospedale e gli venne somministrato bromuro di potassio, un sale ai tempi usato come sedativo. Il quadro fu dunque dipinto in uno stato di calma indotta, al contrario di \emph{Notte stellata} e gli altri, che furono dipinti durante periodi di prolungata e profonda agitazione psicotica.
 
 \tableofcontents
 
