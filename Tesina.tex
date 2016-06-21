@@ -262,7 +262,20 @@ u \dfrac{\partial w}{\partial x} & v \dfrac{\partial w}{\partial y} & w \dfrac{\
 \end{equation}
 
 dove $v$ è la velocità media del flusso e $L$ è la lunghezza caratteristica del tratto che consideriamo.
-Rappresenta il rapporto fra le forze inerziali e quelle viscose.
+Rappresenta il rapporto fra le forze inerziali e quelle viscose: infatti, scegliendo un volume (come un cilindro) di superficie $S$ e lunghezza $L$, e un tempo unitario $t$ (interpretando dunque le derivate come semplici divisioni per tale intervallo) possiamo esprimerle come
+
+\begin{subequations}
+\begin{align}
+F_i = m a = \rho S L \frac{L}{t^2}\\
+F_v = \mu S \frac{\Delta v}{\Delta L} = \frac{\mu S L}{Lt}
+\end{align}
+\end{subequations}
+
+da cui
+
+\begin{equation}
+\text{Re} = \frac{F_i}{F_v} =  \frac{\rho L^2}{t \mu} = \frac{\rho L v}{\mu}
+\end{equation}
 
 \paragraph{Ricaviamolo}
 
