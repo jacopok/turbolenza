@@ -64,47 +64,38 @@ Così, arriviamo allo studio \cite{study2006}, che applica questa teoria (invece
     \label{road}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.12]{selfportrait.jpg}
-    \caption{\emph{Self-portrait with pipe and bandaged ear}.}
-    \label{self}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{scalingpower.png}
-    \caption{\emph{Scaling} di funzioni di struttura di ordine da 1 a 5}
-    \label{scalingpower}
-\end{figure}
-
 \section{Navier-Stokes}
 
 \subsection{Ricavarle}
 
-Partiamo \cite{derivationns} dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume: se il volume è $\Omega$, la proprietà è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono i \emph{sinks}, ovvero i luoghi dove la proprietà viene assorbita (presi come negativi), scriviamo:
+Partiamo \cite{derivationns} dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà intensiva (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume: se il volume è $\Omega$, la proprietà intensiva è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono le \emph{sources}, ovvero i luoghi dove la proprietà viene generata, scriviamo:
 
 \begin{equation}
-\frac{\text{d}}{\text{d} t} \int_{\Omega} \phi \, \text{d} V = -
-\int_{\partial \Omega} \phi \mathbf{v} \cdot \mathbf{\hat{n}} \, \text{d} A +
-\int_{\Omega} \mathbf{s} \, \text{d} V
+\frac{\text{d}}{\text{d} t} \iiint_{\Omega} \phi \, \text{d} V = -
+\iint_{\partial \Omega} \phi \mathbf{v} \cdot \mathbf{\hat{n}} \, \text{d} A +
+\iiint_{\Omega} \mathbf{s} \, \text{d} V
 \end{equation}
 
-Applicando il teorema della divergenza, possiamo rendere tutti gli integrali volumetrici, poi portare la derivata temporale nel primo integrale secondo la regola di Leibniz, per ottenere:
-
+Applicando il teorema della divergenza, possiamo rendere tutti gli integrali volumetrici, poi portare la derivata temporale nel primo integrale secondo la regola di Leibniz, per ottenere:\\*
 \begin{equation}
 \frac{\partial \phi}{\partial t} = - \nabla \cdot ( \phi \mathbf{v} ) + \mathbf{s}
 \end{equation}
 
 \paragraph{Massa}
 
-Se prendiamo come $\phi$ la densità $\rho$, per la conservazione della massa otteniamo:
+Se applichiamo il teorema del trasporto di Reynolds alla densità  --- ovvero scegliamo come proprietà generica $\phi$ la densità $\rho$, definita in modo tale che per un volume $\Omega$ la massa $m$ sia pari a
+
+\begin{equation}
+m = \iiint_{\Omega} \rho \dif V
+\end{equation}
+
+--- per la conservazione della massa abbiamo $\mathbf{s} = 0$ (non esistono ``generatori'' di massa),  otteniamo:
 
 \begin{equation}
 \frac{\partial \rho}{\partial t} + \nabla \cdot ( \rho \mathbf{v} ) = 0 \label{consmassa}
 \end{equation}
 
-Postulando che il fluido non possa essere compresso, ovvero che $\frac{\text{d} \rho}{\text{d} t} = 0$, ricaviamo:
+Postulando che il fluido non possa essere compresso --- ovvero che $\frac{\text{d} \rho}{\text{d} t} = 0$, in quanto una variazione della densità del fluido nel tempo implicherebbe che questo si è compresso o espanso --- ricaviamo:
 
 \begin{equation}
 \nabla \cdot \mathbf{v} = 0
@@ -112,32 +103,39 @@ Postulando che il fluido non possa essere compresso, ovvero che $\frac{\text{d} 
 
 \paragraph{Quantità di moto}
 
-Se, invece, consideriamo $\phi = \rho \mathbf{v}$, ovvero il campo vettoriale della quantità di moto, ricaviamo:
+Se, invece, applichiamo il teorema alla quantità di moto (sostituiamo alla generica proprietà intensiva $\phi$  il vettore $\rho \mathbf{v}$), ricaviamo:
 
 \begin{equation}
 \pderiv{(\rho \mathbf{v})}{t} + \nabla \cdot ( \rho \mathbf{v} \mathbf{v} ) =  \mathbf{s}
 \end{equation}
 
-Semplifichiamo dunque, utilizzando le seguenti identità dell'analisi tensoriale: 
+Semplifichiamo dunque, utilizzando le seguenti identità dell'analisi tensoriale: \\*
 \begin{itemize}
 \item $\nabla \cdot (\phi \mathbf{A}) = \mathbf{A} (\nabla \phi) + \phi (\nabla \cdot \mathbf{A})$ 
 \item $\nabla \cdot (\mathbf{A} \mathbf{B}) = \mathbf{A} \cdot (\nabla \mathbf{B}) + (\nabla \mathbf{A})\cdot \mathbf{B}$.
 \end{itemize}
 
-\begin{align*}
+\begin{align}
 \rho \pderiv{\mathbf{v}}{t} + \mathbf{v}\pderiv{\rho}{t} + \mathbf{v} \mathbf{v} \cdot \nabla \rho
-+ \rho \left( \mathbf{v} \cdot (\nabla \mathbf{v}) + \mathbf{v} (\nabla \cdot \mathbf{v})  \right) &= \mathbf{s} \\
-\mathbf{v}\left( \pderiv{\rho}{t} + \mathbf{v} \cdot \nabla \rho + \rho (\nabla \cdot \mathbf{v}) \right) + \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) &= \mathbf{s} \\
-\mathbf{v}\left( \pderiv{\rho}{t} + \nabla \cdot (\rho \mathbf{v}) \right) + \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) &= \mathbf{s} \\
-\end{align*}
++ \rho \left( \mathbf{v} \cdot (\nabla \mathbf{v}) + \mathbf{v} (\nabla \cdot \mathbf{v})  \right) &= \mathbf{s} \nonumber \\
+\mathbf{v}\left( \pderiv{\rho}{t} + \mathbf{v} \cdot \nabla \rho + \rho (\nabla \cdot \mathbf{v}) \right) + \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) &= \mathbf{s} \nonumber \\
+\mathbf{v}\left( \pderiv{\rho}{t} + \nabla \cdot (\rho \mathbf{v}) \right) + \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) &= \mathbf{s} \label{qdm}
+\end{align}
 
-Per la \ref{consmassa} il termine moltiplicato per $\mathbf{v}$ è pari a 0, dunque ci rimane:
+Per la \eqref{consmassa} il termine moltiplicato per $\mathbf{v}$ nella \eqref{qdm} è pari a 0, dunque ci rimane:
 
 \begin{equation}
 \rho \left( \pderiv{\mathbf{v}}{t} + \mathbf{v} \cdot (\nabla \mathbf{v}) \right) = \mathbf{s}
 \end{equation}
 
 L'integrale volumetrico del termine $\mathbf{s}$ comprende tutti gli altri tipi di forze che possono agire sull'infinitesimo di volume.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.10]{selfportrait.jpg}
+    \caption{\emph{Self-portrait with pipe and bandaged ear}.}
+    \label{self}
+\end{figure}
 
 Ignorando le \emph{body forces} (come la gravità), possiamo scrivere
 
@@ -155,10 +153,9 @@ Dove $\bm{\sigma}$ è un tensore del secondo ordine che include tutti gli sforzi
 \end{pmatrix}
 \end{equation}
 
-Lo possiamo dividere in pressione e forze viscose, ovvero scrivere consideriamo prima le componenti ortogonali e poi gli sforzi di taglio).
+Lo possiamo dividere in pressione e forze viscose, ovvero consideriamo prima le componenti ortogonali e poi gli sforzi di taglio.
 
-Scomponiamo quindi $\bm{\sigma}$ in:
-
+Scomponiamo quindi $\bm{\sigma}$ in:\\*
 \begin{equation}
 \bm{\sigma} = -p I_3 + \begin{pmatrix}
 \sigma_{xx} + p &  \tau_{xy} & \tau_{xz} \\
@@ -177,7 +174,7 @@ Dunque, la forma dell'equazione per ora è:
 
 \subparagraph{Forza viscosa}
 
-Consideriamo una sola direzione del cubetto $\mathrm{d} V$, ovvero due faccie parallele. Se il fluido che consideriamo è newtoniano, è stato osservato che:
+Consideriamo una sola direzione del parallelepipedo $\mathrm{d} V$, ovvero due faccie parallele. Se il fluido che consideriamo è newtoniano, è stato osservato che:
 
 \begin{equation}
 \tau_{ij} = \mu 
@@ -269,7 +266,7 @@ Rappresenta il rapporto fra le forze inerziali e quelle viscose.
 
 \paragraph{Ricaviamolo}
 
-Prendiamo la \ref{navier-stokes} e moltiplichiamola per $L/v^2$, dove $L$ è una lunghezza caratteristica e $v$ è la velocità media.
+Prendiamo la \eqref{navier-stokes} e moltiplichiamola per $L/v^2$, dove $L$ è una lunghezza caratteristica e $v$ è la velocità media.
 
 Ridefiniamo poi: 
 
@@ -325,7 +322,7 @@ Applicando le proprietà della media, possiamo ricavare la versione \emph{mediat
 
 Consideriamo il tensore $\overline{\mathbf{v'}\mathbf{v'}} = \bm{\sigma}_T$ come parte di $\bm{\tau}$, il tensore che prima abbiamo considerato come componente viscosa, ovvero assimiliamo gli effetti della turbolenza ad un incremento della viscosità (non reale, ma efficace).
 
-Se prima avevamo trovato la \ref{fvisc}, sperimentalmente è stata anche ricavato:
+Se prima avevamo trovato la \eqref{fvisc}, sperimentalmente è stata anche ricavato:
 
 \begin{equation}
 \sigma_{Tij} = - \rho \overline{v'_i v'_j} = \mu_t \left(
@@ -422,7 +419,7 @@ $ \delta _{v_R} = v(\mathbf{r} + \mathbf{R}) - v( \mathbf{r})$. $v$ qui è la co
 
 La funzione di struttura di secondo ordine può essere associata all'energia delle fluttuazioni (divisa per la massa), in quanto consiste in una velocità al quadrato.
 
-Dalla \ref{scaling} ricaviamo che lo \emph{scaling} di $S_2 (\mathbf{R})$ è lo stesso di $(\epsilon d)^{2/3}$, dove $d = \abs{\mathbf{R}}$.
+Dalla \eqref{scaling} ricaviamo che lo \emph{scaling} di $S_2 (\mathbf{R})$ è lo stesso di $(\epsilon d)^{2/3}$, dove $d = \abs{\mathbf{R}}$.
 
 Inoltre, Kolmogorov ha ipotizzato che una generica $S_n (\mathbf{R})$ scali con: \\*
 \begin{equation}
@@ -486,14 +483,6 @@ Poiché, come abbiamo visto, c'è una correlazione fra $\epsilon$ e la funzione 
     \label{selfpdf}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
-    \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
-Telescope}}
-    \label{galaxy}
-\end{figure}
-
 
 Un team di scienziati spagnoli \cite{study2006} ha messo in relazione la PDF delle fluttuazioni di luminanza\footnote{La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.} (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF delle differenze di velocità predette dalla teoria di Kolmogorov: per $v$, quindi, ora intendiamo luminanza, misurata come funzione dalle componenti RGB: $v = 0.299 R + 0.587 G + 0.144B$ (i parametri derivano dalla sensibilità umana alle varie componenti della luce).
 
@@ -504,6 +493,13 @@ I risultati sono mostrati nella figura \ref{gaussians},
     \includegraphics[scale=0.5]{gauss.png}
     \caption{Densità di probabilità della variazione di luminanza di \emph{Starry night} per diverse distanze $R_i = 60, 240, 400, 600, 800, 1200$ dal basso in alto.}
     \label{gaussians}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{scalingpower.png}
+    \caption{\emph{Scaling} di funzioni di struttura di ordine da 1 a 5}
+    \label{scalingpower}
 \end{figure}
 
 La quantità analizzata, $P_R(\delta v_R)$, è in realtà normalizzata:
@@ -519,7 +515,7 @@ P_R(\delta v_R)=
 (\delta v_R )^2
 \right\rangle\right)^{1/2} = \norm{\delta v_R}$ è la norma del vettore $\delta v_R$).
 
-Inoltre, anche la previsione dell'equazione \ref{scalinggenerico} è confermata, come possiamo vedere dalla figura \ref{scalingpower}.
+Inoltre, anche la previsione dell'equazione \eqref{scalinggenerico} è confermata, come possiamo vedere dalla figura \ref{scalingpower}.
 
 Entrambi questi risultati sono riferiti al quadro ``Notte Stellata'' (\ref{starrynight}), del 1889, ma gli scienziati spagnoli hanno analizzato altri tre quadri:
 
@@ -532,6 +528,16 @@ Entrambi questi risultati sono riferiti al quadro ``Notte Stellata'' (\ref{starr
 Le PDF dei primi due sono chiaramente riconducibili a curve gaussiane, come predetto dalla teoria di Kolmogorov, e infatti questi quadri presentano il distintivo aspetto ``turbolento'' che spesso associamo a questo artista; al contrario, la PDF del terzo quadro è estremamente distante dalla gaussiana prevista, malgrado siano presenti ``avvolgimenti'' nella rappresentazione del fumo della pipa (fenomemo effettivamente turbolento nella realtà).
 
 L'ultimo quadro è stato dipinto agli inizi del 1889, poco dopo il noto episodio del 23 Dicembre 1888 in cui Van Gogh si mutilò parte dell'orecchio. Fu forzatamente ammesso in un ospedale e gli venne somministrato bromuro di potassio, un sale ai tempi usato come sedativo. Il quadro fu dunque dipinto in uno stato di calma indotta, al contrario di \emph{Notte stellata} e gli altri, che furono dipinti durante periodi di prolungata e profonda agitazione psicotica.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
+    \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
+Telescope}}
+    \label{galaxy}
+\end{figure}
+
+
 
 \tableofcontents
 
