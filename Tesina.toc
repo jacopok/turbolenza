@@ -4,16 +4,16 @@
 \contentsline {subsection}{\numberline {1.1}Ricavarle}{1}{subsection.1.1}
 \contentsline {paragraph}{Massa}{2}{section*.1}
 \contentsline {paragraph}{Quantit\IeC {\`a} di moto}{4}{section*.2}
-\contentsline {subparagraph}{Forza viscosa}{5}{section*.3}
+\contentsline {subparagraph}{Forza viscosa}{6}{section*.3}
 \contentsline {subsection}{\numberline {1.2}Formulazione}{6}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Il numero di Reynolds}{6}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.3}Il numero di Reynolds}{7}{subsection.1.3}
 \contentsline {paragraph}{Ricaviamolo}{7}{section*.4}
-\contentsline {paragraph}{Valutazioni qualitative}{7}{section*.5}
+\contentsline {paragraph}{Valutazioni qualitative}{8}{section*.5}
 \contentsline {section}{\numberline {2}Il flusso turbolento}{8}{section.2}
-\contentsline {paragraph}{Viscosit\IeC {\`a} turbolenta}{8}{section*.6}
+\contentsline {paragraph}{Viscosit\IeC {\`a} turbolenta}{9}{section*.6}
 \contentsline {subsection}{\numberline {2.1}La teoria di Kolmogorov}{9}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Spettro di energia}{9}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}Spettro di energia}{10}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}La funzione di struttura}{10}{subsection.2.3}
-\contentsline {paragraph}{Distribuzione log-normale}{10}{section*.7}
-\contentsline {subsection}{\numberline {2.4}La distribuzione di $\epsilon $}{10}{subsection.2.4}
+\contentsline {paragraph}{Distribuzione log-normale}{11}{section*.7}
+\contentsline {subsection}{\numberline {2.4}La distribuzione di $\epsilon $}{11}{subsection.2.4}
 \contentsline {section}{\numberline {3}La teoria di Kolmogorov applicata all'arte}{11}{section.3}

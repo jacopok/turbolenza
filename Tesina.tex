@@ -68,7 +68,9 @@ Così, arriviamo allo studio \cite{study2006}, che applica questa teoria (invece
 
 \subsection{Ricavarle}
 
-Partiamo \cite{derivationns} dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà intensiva (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume: se il volume è $\Omega$, la proprietà intensiva è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono le \emph{sources}, ovvero i luoghi dove la proprietà viene generata, scriviamo:
+Partiamo \cite{derivationns} dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà intensiva (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume.
+
+Se il nostro volume è $\Omega$, la proprietà intensiva è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono le \emph{sources}, ovvero i luoghi dove la proprietà viene generata, scriviamo:
 
 \begin{equation}
 \frac{\text{d}}{\text{d} t} \iiint_{\Omega} \phi \, \text{d} V = -
@@ -95,8 +97,7 @@ m = \iiint_{\Omega} \rho \dif V
 \frac{\partial \rho}{\partial t} + \nabla \cdot ( \rho \mathbf{v} ) = 0 \label{consmassa}
 \end{equation}
 
-Postulando che il fluido non possa essere compresso --- ovvero che $\frac{\text{d} \rho}{\text{d} t} = 0$, in quanto una variazione della densità del fluido nel tempo implicherebbe che questo si è compresso o espanso --- ricaviamo:
-
+Postulando che il fluido non possa essere compresso --- ovvero che la densità sia costante nel tempo e nello spazio, in formule $\frac{\text{d} \rho}{\text{d} t} = 0$ e $\nabla \rho = 0$, in quanto una variazione della densità del fluido nel tempo implicherebbe che questo si è compresso o espanso --- ricaviamo:\\*
 \begin{equation}
 \nabla \cdot \mathbf{v} = 0
 \end{equation}
@@ -108,6 +109,23 @@ Se, invece, applichiamo il teorema alla quantità di moto (sostituiamo alla gene
 \begin{equation}
 \pderiv{(\rho \mathbf{v})}{t} + \nabla \cdot ( \rho \mathbf{v} \mathbf{v} ) =  \mathbf{s}
 \end{equation}
+
+dove con abuso di notazione intendiamo per $\mathbf{v} \mathbf{v}$:
+
+\begin{equation}
+\mathbf{v} \mathbf{v} = (v_i v_j)\mathbf{e}_i \otimes \mathbf{e}_j = \begin{pmatrix}
+v_x v_x & v_x v_y & v_x v_z \\
+v_y v_x & v_y v_y & v_y v_z \\
+v_z v_x & v_z v_y & v_z v_z 
+\end{pmatrix}
+\end{equation}
+
+dove per $\mathbf{e}_i$ intendiamo un versore nell'$i$-esima direzione.
+
+Compare dunque la divergenza di un tensore: questa è definita come il vettore
+
+\begin{equation}
+\nabla \cdot \mathbf{T} = \left( \sum_{i} \frac{\partial T_{ij}}{\partial x_i} \right) \mathbf{e}_j\end{equation}
 
 Semplifichiamo dunque, utilizzando le seguenti identità dell'analisi tensoriale: \\*
 \begin{itemize}
@@ -164,7 +182,7 @@ Scomponiamo quindi $\bm{\sigma}$ in:\\*
 \end{pmatrix}
 \end{equation}
 
-Se definiamo la pressione come un meno un terzo della traccia di $\bm{\sigma}$ (possiamo farlo assumendo che il flusso sia isotropico), ci rimane $\bm{\sigma} = -p I_3 + \bm{\tau}$. Intuitivamente, il primo termine rappresenta le forze che cercano di comprimere il volumetto, mentre il secondo quelle che tendono a distorcerlo.
+dove  $I_3$ è una matrice identità tre per tre. Se definiamo la pressione come un meno un terzo della traccia di $\bm{\sigma}$ (possiamo farlo assumendo che il flusso sia isotropico), ci rimane $\bm{\sigma} = -p I_3 + \bm{\tau}$. Intuitivamente, il primo termine rappresenta le forze che cercano di comprimere il parallelepipedo, mentre il secondo quelle che tendono a distorcerlo.
 
 Dunque, la forma dell'equazione per ora è:
 
