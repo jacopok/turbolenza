@@ -117,7 +117,7 @@ dove con abuso di notazione intendiamo per $\mathbf{v} \mathbf{v}$:
 v_x v_x & v_x v_y & v_x v_z \\
 v_y v_x & v_y v_y & v_y v_z \\
 v_z v_x & v_z v_y & v_z v_z 
-\end{pmatrix}
+\end{pmatrix} \label{vettorepervettore}
 \end{equation}
 
 dove per $\mathbf{e}_i$ intendiamo un versore nell'$i$-esima direzione.
@@ -126,6 +126,8 @@ Compare dunque la divergenza di un tensore: questa è definita come il vettore
 
 \begin{equation}
 \nabla \cdot \mathbf{T} = \left( \sum_{i} \frac{\partial T_{ij}}{\partial x_i} \right) \mathbf{e}_j\end{equation}
+
+(spesso si omette la somma).
 
 Semplifichiamo dunque, utilizzando le seguenti identità dell'analisi tensoriale: \\*
 \begin{itemize}
@@ -349,11 +351,13 @@ Applicando le proprietà della media, possiamo ricavare la versione \emph{mediat
 \end{align}
 \end{subequations}
 
+dove $\overline{\mathbf{v'}\mathbf{v'}}$ è sempre un tensore, secondo la formula \eqref{vettorepervettore}.
+
 \paragraph{Viscosità turbolenta}
 
 Consideriamo il tensore $\overline{\mathbf{v'}\mathbf{v'}} = \bm{\sigma}_T$ come parte di $\bm{\tau}$, il tensore che prima abbiamo considerato come componente viscosa, ovvero assimiliamo gli effetti della turbolenza ad un incremento della viscosità (non reale, ma efficace).
 
-Se prima avevamo trovato la \eqref{fvisc}, sperimentalmente è stata anche ricavato:
+Se prima avevamo trovato la \eqref{fvisc}, sperimentalmente è stato anche ricavato:
 
 \begin{equation}
 \sigma_{Tij} = - \rho \overline{v'_i v'_j} = \mu_t \left(
@@ -385,8 +389,18 @@ And so on to viscosity. \cite{richardson}
 
 Chiamiamo $d$ dimensione del vortice e $\accentset{\circ}{v}$ la sua velocità orbitale: osserviamo che la seconda è funzione della prima ($\accentset{\circ}{v} = f(d)$).
 
-Il fatto che la turbolenza sia statisticamente omogenea implica che i passaggi di energia da una scala ad un'altra siano uguali: $\epsilon (d_{\text{max}}) = \epsilon (d_{\text{min}})$, dove
-$\epsilon =$ energia fornita / (massa unitaria $\times$ tempo), ovvero energia trasmessa di scala in scala, ovvero energia dissipata. Come dimensioni:
+\paragraph{Tasso di dissipazione}
+
+Il \emph{tasso di dissipazione} $\epsilon$ è definito come 
+
+\begin{equation}
+\epsilon = \frac{\text{energia convertita in calore}}{\text{massa unitaria} \times \text{tempo unitario}}
+\end{equation}
+
+Il fatto che la turbolenza sia statisticamente omogenea implica che i passaggi di energia da una scala ad un'altra siano uguali: l'energia inizialmente fornita ai vortici più grandi è pari a quella passata a quelli più piccoli, e infine a quella dissipata in calore.
+Dunque, malgrado il comportamento sia sempre caotico, possiamo dire che il comportamento dei grandi vortici è simile a quello dei più piccoli.
+
+Come dimensioni:
 
 \begin{equation}
 [\epsilon ] = L^2 T^{-3}
@@ -400,7 +414,7 @@ Assumiamo che $\accentset{\circ}{v} \propto (\epsilon d)^k$. Dimensionalmente, o
 
 dove $A$ è una costante adimensionale.
 
-La turbolenza avviene fra $d_{\text{max}}$ e $d_{\text{min}}$. La prima è la dimensione del sistema, la seconda invece (postuliamo) dipende solo da $\epsilon$ e $\nu$. Dimensionalmente:
+La turbolenza avviene fra $d_{\text{max}}$ e $d_{\text{min}}$. La prima è la dimensione del sistema, la seconda invece è la scala alla quale avviene la dissipazione in calore, e Kolmogorov ha postulato che dipenda solo da $\epsilon$ e $\nu$. Dimensionalmente:
 
 \begin{equation}
 d_{\text{min}} \sim \nu^{3/4} \epsilon^{-1/4}
@@ -507,31 +521,12 @@ Poiché, come abbiamo visto, c'è una correlazione fra $\epsilon$ e la funzione 
 
 \section{La teoria di Kolmogorov applicata all'arte}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.4]{PDF_wheat.png}
-    \caption{PDF di \emph{Wheatfield with crows}.}
-    \label{wheatfieldpdf}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.4]{PDF_road.png}
-    \caption{PDF di \emph{Road with cypress and star}.}
-    \label{roadpdf}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.4]{PDF_self_portrait.png}
-    \caption{PDF di \emph{Self-portrait with pipe and bandaged ear}.}
-    \label{selfpdf}
-\end{figure}
-
-
 Un team di scienziati spagnoli \cite{study2006} ha messo in relazione la PDF delle fluttuazioni di luminanza\footnote{La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.} (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF delle differenze di velocità predette dalla teoria di Kolmogorov: per $v$, quindi, ora intendiamo luminanza, misurata come funzione dalle componenti RGB: $v = 0.299 R + 0.587 G + 0.144B$ (i parametri derivano dalla sensibilità umana alle varie componenti della luce).
 
-I risultati sono mostrati nella figura \ref{gaussians}, 
+Quindi, nella griglia di pixel derivante dalla digitalizzazione dell'immagine è stato preso un campione di differenze di luminosità a diverse separazioni, e i risultati sono stati organizzati in un grafico semilogaritmico (ovvero nel quale un asse --- quello della separazione --- è lineare e l'altro --- quello della differenza di luminanza --- è logaritmico), nel quale dunque vedere una gaussiana indica una distribuzione log-normale della variabile effettiva.
+I risultati sono mostrati nella figura \ref{gaussians}.
+
+Il fatto che il comportamento sia lo stesso a diverse scale è particolarmente significativo: è analogo alla previsione di Kolmogorov che i vortici siano statisticamente simili a diverse scale.
 
 \begin{figure}[h]
     \centering
@@ -547,8 +542,7 @@ I risultati sono mostrati nella figura \ref{gaussians},
     \label{scalingpower}
 \end{figure}
 
-La quantità analizzata, $P_R(\delta v_R)$, è in realtà normalizzata:
-
+La quantità analizzata, $P_R(\delta v_R)$, è in realtà normalizzata:\\*
 \begin{equation}
 P_R(\delta v_R)=
 \frac{\delta v_R}{\sqrt{\left\langle
@@ -576,13 +570,32 @@ L'ultimo quadro è stato dipinto agli inizi del 1889, poco dopo il noto episodio
 
 \begin{figure}
     \centering
+    \includegraphics[scale=0.4]{PDF_wheat.png}
+    \caption{PDF di \emph{Wheatfield with crows}.}
+    \label{wheatfieldpdf}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{PDF_road.png}
+    \caption{PDF di \emph{Road with cypress and star}.}
+    \label{roadpdf}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{PDF_self_portrait.png}
+    \caption{PDF di \emph{Self-portrait with pipe and bandaged ear}.}
+    \label{selfpdf}
+\end{figure}
+
+\begin{figure}
+    \centering
     \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
     \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
 Telescope}}
     \label{galaxy}
 \end{figure}
-
-
 
 \tableofcontents
 
