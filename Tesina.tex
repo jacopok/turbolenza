@@ -57,13 +57,6 @@ Così, arriviamo allo studio \cite{study2006}, che applica questa teoria (invece
     \label{wheatfield}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.12]{road_cypress.jpg}
-    \caption{\emph{Road with cypress and star}.}
-    \label{road}
-\end{figure}
-
 \section{Navier-Stokes}
 
 \subsection{Ricavarle}
@@ -157,12 +150,10 @@ L'integrale volumetrico del termine $\mathbf{s}$ comprende tutti gli altri tipi 
     \label{self}
 \end{figure}
 
-Ignorando le \emph{body forces} (come la gravità), possiamo scrivere
-
+Ignorando le \emph{body forces} (come la gravità), possiamo scrivere\\*
 \begin{equation}
 \mathbf{s} = \nabla \cdot \bm{\sigma}
-\end{equation}
-
+\end{equation}\\*
 Dove $\bm{\sigma}$ è un tensore del secondo ordine che include tutti gli sforzi sull'infinitesimo di volume $\mathrm{d}V$. 
 
 \begin{equation}
@@ -204,7 +195,7 @@ Consideriamo una sola direzione del parallelepipedo $\mathrm{d} V$, ovvero due f
     \right) \label{fvisc}
 \end{equation}
 
-dove $\mu$ è la cosiddetta \emph{viscosità dinamica}.
+dove $\mu$ è una proprietà del fluido detta \emph{viscosità dinamica}.
 
 Troviamo poi che:
 
@@ -273,16 +264,25 @@ u \dfrac{\partial w}{\partial x} & v \dfrac{\partial w}{\partial y} & w \dfrac{\
 \end{bmatrix}
 \end{equation}
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.12]{road_cypress.jpg}
+    \caption{\emph{Road with cypress and star}.}
+    \label{road}
+\end{figure}
+
+
 \subsection{Il numero di Reynolds}
 
-È definito come
+Il numero di Reynolds ($\text{Re}$) è definito come
 
 \begin{equation}
 \text{Re} = \frac{v L}{\nu} = \frac{\rho v L}{\mu}
 \end{equation}
 
 dove $v$ è la velocità media del flusso e $L$ è la lunghezza caratteristica del tratto che consideriamo.
-Rappresenta il rapporto fra le forze inerziali e quelle viscose: infatti, scegliendo un volume (come un cilindro) di superficie $S$ e lunghezza $L$, e un tempo unitario $t$ (interpretando dunque le derivate come semplici divisioni per tale intervallo) possiamo esprimerle come
+
+Rappresenta il rapporto fra le forze inerziali e quelle viscose: per capirlo, scegliamo un volume (come un cilindro) di superficie $S$ e lunghezza $L$, e un tempo unitario $t$ (interpretando dunque le derivate come semplici divisioni per tale intervallo) possiamo esprimerle come
 
 \begin{subequations}
 \begin{align}
@@ -296,6 +296,8 @@ da cui
 \begin{equation}
 \text{Re} = \frac{F_i}{F_v} =  \frac{\rho L^2}{t \mu} = \frac{\rho L v}{\mu}
 \end{equation}
+
+Chiaramente, questo calcolo non è formalmente impeccabile, ma permette di capire il concetto dietro a questo numero.
 
 \paragraph{Ricaviamolo}
 
@@ -328,17 +330,19 @@ Si può dunque vedere che, al tendere di Re all'infinito, il termine viscoso sco
 \item a bassi numeri di Reynolds, le forze viscose dominano e il regime è \emph{laminare}.
 \end{itemize}
 
+Intuitivamente, abbiamo un regime laminare quando la dissipazione viscosa è così alta da impedire che ci siano brusche variazioni di velocità con poca separazione spaziale.
+
 \section{Il flusso turbolento}
 
-Quando il moto diventa turbolento, a quello principale della direzione della velocità media si sovrappongono moti secondari in direzioni perpendicolari, che provocano rimescolamento e vortici \cite{dispense}.
+Quando il moto diventa turbolento, a quello principale della direzione della velocità media si sovrappongono moti secondari caotici in direzioni perpendicolari, che provocano rimescolamento e vortici \cite{dispense}.
 
-Dividiamo la velocità in una parte media e una fluttuazione: $\mathbf{v} = \mathbf{\overline{v}} + \mathbf{v'}$, dove $\mathbf{v'}$ è la fluttuazione, ovvero $\mathbf{\overline{v'}} =  0$, e facciamo lo stesso per la pressione ($p = \overline{p} + p'$).
-
-Per media $\overline{\varphi}$ di una quantità qualsiasi $\varphi (t)$ in un punto fisso dello spazio, intendiamo:
+\paragraph{Media} Per media (denotata $\overline{\varphi}$) di una quantità qualsiasi $\varphi (t)$ in un punto fisso dello spazio, intendiamo:
 
 \begin{equation}
 \overline{\varphi} = \frac{1}{\vartheta} \int^{t_0 + \vartheta}_{0} \varphi \, \text{d}t
 \end{equation}
+
+Dividiamo la velocità in una parte media e una fluttuazione: $\mathbf{v} = \mathbf{\overline{v}} + \mathbf{v'}$, dove $\mathbf{v'}$ è la fluttuazione, ovvero $\mathbf{\overline{v'}} =  0$, e facciamo lo stesso per la pressione ($p = \overline{p} + p'$).
 
 Applicando le proprietà della media, possiamo ricavare la versione \emph{mediata} delle equazioni di Navier-Stokes:
 
@@ -357,7 +361,7 @@ dove $\overline{\mathbf{v'}\mathbf{v'}}$ è sempre un tensore, secondo la formul
 
 Consideriamo il tensore $\overline{\mathbf{v'}\mathbf{v'}} = \bm{\sigma}_T$ come parte di $\bm{\tau}$, il tensore che prima abbiamo considerato come componente viscosa, ovvero assimiliamo gli effetti della turbolenza ad un incremento della viscosità (non reale, ma efficace).
 
-Se prima avevamo trovato la \eqref{fvisc}, sperimentalmente è stato anche ricavato:
+Come prima avevamo trovato la \eqref{fvisc}, sperimentalmente è stato anche ricavato:
 
 \begin{equation}
 \sigma_{Tij} = - \rho \overline{v'_i v'_j} = \mu_t \left(
@@ -373,11 +377,13 @@ L'equazione di conservazione della quantità di moto si trasforma quindi in:
 \frac{\Dif \mathbf{\overline{v}}}{\Dif t}  = -\frac{\nabla \overline{p}}{\rho} + (\nu + \nu_T ) \nabla^2 \mathbf{\overline{v}} 
 \end{equation}
 
-dove chiaramente $\nu_T = \mu_T / \rho$
+dove chiaramente $\nu_T = \mu_T / \rho$.
 
 \subsection{La teoria di Kolmogorov}
 
-Il flusso turbolento è composto da vortici di diverse dimensioni. L'energia viene trasmessa dai più grandi ai più piccoli, fino a quando non viene dissipata completamente dalla frizione viscosa. Questo è stato espresso dal poeta Lewis Fry Richardson:
+Il flusso turbolento è composto da vortici di diverse dimensioni che si muovono in modo caotico. 
+
+C'è una \emph{cascata di energia}: questa viene trasmessa dai vortici più grandi ai più piccoli, fino a quando non viene dissipata completamente dalla frizione viscosa. Questo è stato espresso dal poeta Lewis Fry Richardson:
 
 \begin{verse}
 Big whorls have little whorls, \\
@@ -385,9 +391,6 @@ which feed on their velocity; \\
 And little whorls have lesser whorls, \\
 And so on to viscosity. \cite{richardson}
 \end{verse}
-
-
-Chiamiamo $d$ dimensione del vortice e $\accentset{\circ}{v}$ la sua velocità orbitale: osserviamo che la seconda è funzione della prima ($\accentset{\circ}{v} = f(d)$).
 
 \paragraph{Tasso di dissipazione}
 
@@ -406,7 +409,7 @@ Come dimensioni:
 [\epsilon ] = L^2 T^{-3}
 \end{equation}
 
-Assumiamo che $\accentset{\circ}{v} \propto (\epsilon d)^k$. Dimensionalmente, otteniamo:
+Assumiamo che la velocità orbitale $\accentset{\circ}{v}$ di un vortice sia proporzionale a una potenza $k$ del prodotto fra $\epsilon$ e la dimensione $d$ del vortice:  $\accentset{\circ}{v} \propto (\epsilon d)^k$. Tramite l'analisi dimensionale, otteniamo:
 
 \begin{equation}
 \accentset{\circ}{v} = A (\epsilon d)^{1/3} \label{scaling}
@@ -414,17 +417,17 @@ Assumiamo che $\accentset{\circ}{v} \propto (\epsilon d)^k$. Dimensionalmente, o
 
 dove $A$ è una costante adimensionale.
 
-La turbolenza avviene fra $d_{\text{max}}$ e $d_{\text{min}}$. La prima è la dimensione del sistema, la seconda invece è la scala alla quale avviene la dissipazione in calore, e Kolmogorov ha postulato che dipenda solo da $\epsilon$ e $\nu$. Dimensionalmente:
+La turbolenza avviene in quello che è detto \emph{inertial range}, ovvero l'insieme di scale per le quali dominano le forze inerziali: fra $d_{\text{max}}$, la dimensione del sistema, e $d_{\text{min}}$, la scala alla quale avviene la dissipazione in calore. Kolmogorov ha postulato che quest'ultima dipenda solo da $\epsilon$ e $\nu$. Dimensionalmente, possiamo trovare gli esponenti di questi parametri:
 
 \begin{equation}
 d_{\text{min}} \sim \nu^{3/4} \epsilon^{-1/4}
 \end{equation}
 
-$\nu^{3/4} \epsilon^{-1/4}$ = scala di Kolmogorov
+$\nu^{3/4} \epsilon^{-1/4}$ è quindi detta \emph{scala di Kolmogorov}.
 
 \begin{comment}
-
 \subsection{Spettro di energia}
+
 
 Definiamo il \emph{numero d'onda} come:
 
