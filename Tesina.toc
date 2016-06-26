@@ -6,8 +6,8 @@
 \contentsline {paragraph}{Quantit\IeC {\`a} di moto}{3}{section*.2}
 \contentsline {subparagraph}{Forza viscosa}{5}{section*.3}
 \contentsline {subsection}{\numberline {1.2}Formulazione}{5}{subsection.1.2}
-\contentsline {subsection}{\numberline {1.3}Il numero di Reynolds}{5}{subsection.1.3}
-\contentsline {paragraph}{Ricaviamolo}{6}{section*.4}
+\contentsline {subsection}{\numberline {1.3}Il numero di Reynolds}{6}{subsection.1.3}
+\contentsline {paragraph}{Ricaviamolo}{7}{section*.4}
 \contentsline {paragraph}{Valutazioni qualitative}{7}{section*.5}
 \contentsline {section}{\numberline {2}Il flusso turbolento}{7}{section.2}
 \contentsline {paragraph}{Media}{7}{section*.6}
