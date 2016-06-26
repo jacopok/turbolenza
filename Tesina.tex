@@ -5,7 +5,7 @@
 \usepackage{amsfonts}
 \usepackage{comment}
 \usepackage{nicefrac}
-\usepackage[margin=3cm]{geometry}
+\usepackage[margin=3.3cm]{geometry}
 \usepackage{amssymb}
 \usepackage{accents}
 \usepackage{amsthm}
@@ -18,6 +18,7 @@
 \usepackage{bm}
 \usepackage{indentfirst}
 \usepackage{nicefrac}
+\babeltags{en = english}
 
 \usepackage{cool}
 \Style{DSymb={\mathrm d},DShorten=true,IntegrateDifferentialDSymb=\mathrm{d}}
@@ -39,11 +40,11 @@ Liceo Scientifico ``M. Grigoletti'', Pordenone}
 \maketitle
 
 \begin{abstract}
-La turbolenza è sempre stata un complesso ambito di ricerca nella fluidodinamica. Una delle più note teorie proposte al riguardo è quella del russo Andrej Kolmogorov.
+Nello studio della fluidodinamica, la turbolenza è sempre stata un complesso ambito di ricerca. Il russo Andrej Kolmogorov nel 1941 propose una teoria al riguardo, che a tutt'oggi rimane una delle più note.
 
-Un team di scienziati \cite{study2006} ha applicato questa teoria ad alcuni quadri di Van Gogh spesso definiti (qualitativamente) ``turbolenti''.
+Un team di scienziati \cite{study2006} la ha applicata ad alcuni quadri di Van Gogh spesso definiti (qualitativamente) ``turbolenti''.
 
-Lo scopo di questa tesina è arrivare a comprendere il loro metodo, tramite una sintetica trattazione prima delle equazioni di Navier-Stokes, fondamento della fluidodinamica, poi di alcuni punti della teoria di Kolmogorov, ed infine del metodo utilizzato per applicare equazioni tipicamente viste nei fluidi a dei quadri.
+Lo scopo di questo documento è arrivare a comprendere il loro metodo, tramite una sintetica trattazione prima delle equazioni di Navier-Stokes, fondamento della fluidodinamica, poi di alcuni punti della teoria di Kolmogorov, ed infine del metodo utilizzato per applicare equazioni tipicamente viste nei fluidi a dei quadri.
 \end{abstract}
 
 \begin{figure}[h]
@@ -64,9 +65,9 @@ Lo scopo di questa tesina è arrivare a comprendere il loro metodo, tramite una 
 
 \subsection{Derivazione}
 
-Partiamo dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà intensiva (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume.
+Il punto di partenza è il \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà intensiva (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume.
 
-Se il nostro volume è $\Omega$, la proprietà intensiva è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono le \emph{sources}, ovvero i luoghi dove la proprietà viene generata, scriviamo:
+Se il volume considerato è $\Omega$, la proprietà intensiva è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono le \emph{sources}, ovvero i luoghi dove la proprietà viene generata, scriviamo:
 
 \begin{equation}
 \frac{\text{d}}{\text{d} t} \iiint_{\Omega} \phi \, \text{d} V = -
@@ -103,7 +104,7 @@ Postulando che il fluido non possa essere compresso --- ovvero che la densità s
 Se, invece, applichiamo il teorema alla quantità di moto (sostituendo alla generica proprietà intensiva $\phi$  il vettore $\rho \mathbf{v}$), ricaviamo:
 
 \begin{equation}
-\pderiv{(\rho \mathbf{v})}{t} + \nabla \cdot ( \rho \mathbf{v} \mathbf{v} ) =  \mathbf{s}
+\pderiv{(\rho \mathbf{v})}{t} + \nabla \cdot ( \rho \mathbf{v} \mathbf{v} ) =  \mathbf{s} \label{consmomentum}
 \end{equation}
 
 dove con abuso di notazione intendiamo per $\mathbf{v} \mathbf{v}$:
@@ -118,7 +119,7 @@ v_z v_x & v_z v_y & v_z v_z
 
 in cui per $\mathbf{e}_i$ intendiamo un versore nell'$i$-esima direzione.
 
-Compare dunque la divergenza di un tensore: questa è definita come il vettore
+Nell'equazione \eqref{consmomentum} compare dunque la divergenza di un tensore: in generale la divergenza di un tensore di ordine $n>1$ ha ordine $n-1$; per un tensore del secondo ordine questa è definita come il vettore
 
 \begin{equation}
 \nabla \cdot \mathbf{T} = \left( \sum_{i} \frac{\partial T_{ij}}{\partial x_i} \right) \mathbf{e}_j\end{equation}
@@ -287,9 +288,9 @@ Il numero di Reynolds ($\text{Re}$) è definito come
 
 dove $v$ è la velocità media del flusso e $L$ è la lunghezza caratteristica del tratto che consideriamo.
 
-Rappresenta il rapporto fra le forze inerziali e quelle viscose: per capirlo, scegliamo un volume (come un cilindro) di superficie $S$ e lunghezza $L$, e un tempo unitario $t$ (interpretando dunque, euristicamente, le derivate come semplici divisioni per tale intervallo).
+Rappresenta il rapporto fra le forze inerziali e quelle viscose: per capirlo, scegliamo un volume (come un cilindro) di superficie $S$ e lunghezza $L$, e un tempo unitario $t$ (interpretando dunque, euristicamente, le derivate come divisioni per tale intervallo).
 
-Possiamo esprimere le forze come:
+In questa semplificazione, possiamo esprimere le forze come:
 
 \begin{subequations}
 \begin{align}
@@ -306,7 +307,7 @@ da cui
 
 Questo calcolo non è formalmente impeccabile (abbiamo trattato le derivate come divisioni discrete), ma permette di comprendere il significato fisico del numero di Reynolds.
 
-\paragraph{Ricaviamolo}
+\paragraph{Il numero di Reynolds nelle equazioni di Navier-Stokes}
 
 Prendiamo la \eqref{navier-stokes} e moltiplichiamola per $L/v^2$, dove $L$ è una lunghezza caratteristica e $v$ è la velocità media.
 
@@ -535,7 +536,7 @@ Poiché, come abbiamo visto, c'è una correlazione fra $\epsilon$ e la funzione 
 Un team di scienziati spagnoli \cite{study2006} ha messo in relazione la PDF delle fluttuazioni di luminanza\footnote{La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.} (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF delle differenze di velocità predette dalla teoria di Kolmogorov: per $v$, quindi, ora intendiamo luminanza, misurata come funzione dalle componenti RGB: $v = 0.299 R + 0.587 G + 0.144B$ (i parametri derivano dalla sensibilità umana alle varie componenti della luce).
 
 Quindi, nella griglia di pixel derivante dalla digitalizzazione dell'immagine è stato preso un campione di differenze di luminosità a diverse separazioni, e i risultati sono stati organizzati in un grafico semilogaritmico (ovvero nel quale un asse --- quello della separazione --- è lineare e l'altro --- quello della differenza di luminanza --- è logaritmico), nel quale dunque vedere una gaussiana indica una distribuzione log-normale della variabile effettiva.
-I risultati dell'analisi del quadro ``Notte Stellata'' (\ref{starrynight}) del 1889, sono mostrati nella figura \ref{gaussians}.
+I risultati dell'analisi del quadro ``Notte Stellata'' (figura \ref{starrynight}) del 1889, sono mostrati nella figura \ref{gaussians}.
 
 Il fatto che il comportamento sia lo stesso a diverse scale è particolarmente significativo: è analogo alla previsione di Kolmogorov che i vortici siano statisticamente simili a diverse scale.
 
@@ -706,6 +707,7 @@ University of Kentucky), \emph{Introductory Lectures on Turbulence}. \\
   1990 (solo il sommario).
   
 \bibitem{scalingbuono}
+\begin{en}
   Lian-Ping Wang (Department of Mechanical Engineering, 126 Spencer Laboratory, University of Delaware, Newark, DE 19716, USA),\\
  Shiyi Chen (BM Research Division, T.J. Watson Research Center, PO Box 218, Yorktown Heights,
 NY 10598, USA), \\
@@ -716,6 +718,7 @@ refined turbulence theory through
 high-resolution simulations. }
   \url{http://research.me.udel.edu/~lwang/reprints/Wang_etal_JFM_1996.pdf}, \\
   1995
+\end{en}
   
 \end{thebibliography}
 
