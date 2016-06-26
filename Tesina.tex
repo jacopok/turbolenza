@@ -5,7 +5,7 @@
 \usepackage{amsfonts}
 \usepackage{comment}
 \usepackage{nicefrac}
-%\usepackage[margin=2cm]{geometry}
+\usepackage[margin=2.8cm]{geometry}
 \usepackage{amssymb}
 \usepackage{accents}
 \usepackage{amsthm}
@@ -17,6 +17,7 @@
 %\usepackage[extreme]{savetrees}
 \usepackage{bm}
 \usepackage{indentfirst}
+\usepackage{nicefrac}
 
 \usepackage{cool}
 \Style{DSymb={\mathrm d},DShorten=true,IntegrateDifferentialDSymb=\mathrm{d}}
@@ -29,7 +30,7 @@
 \author{Jacopo Tissino \\
 VB
 (CLIL)\\
-Liceo Scientifico M. Grigoletti}
+Liceo Scientifico ``M. Grigoletti'', Pordenone}
 \date{A. S. 2015--16}
 \title{\huge{\textbf{Turbolenza}}\\
 \Large{Fluidodinamica e Van Gogh}}
@@ -38,9 +39,11 @@ Liceo Scientifico M. Grigoletti}
 \maketitle
 
 \begin{abstract}
-Partiamo da una trattazione delle equazioni di Navier-Stokes (per un fluido non comprimibile, ignorando le forze esterne), per poi capire cos'è il regime turbolento e quali sono le basi della teoria proposta da Kolmogorov nel 1941.
+La turbolenza è sempre stata un complesso ambito di ricerca nella fluidodinamica. Una delle più note teorie proposte al riguardo è quella del russo Andrej Kolmogorov.
 
-Così, arriviamo allo studio \cite{study2006}, che applica questa teoria (invece che alla velocità di un fluido) alla luminanza dei quadri di Van Gogh, trovando degli interessanti collegamenti.
+Un team di scienziati \cite{study2006} ha applicato questa teoria ad alcuni quadri di Van Gogh spesso definiti (qualitativamente) ``turbolenti''.
+
+Lo scopo di questa tesina è arrivare a comprendere il loro metodo, tramite una sintetica trattazione prima delle equazioni di Navier-Stokes, fondamento della fluidodinamica, poi di alcuni punti della teoria di Kolmogorov, ed infine del metodo utilizzato per applicare equazioni tipicamente viste nei fluidi a dei quadri.
 \end{abstract}
 
 \begin{figure}[h]
@@ -57,11 +60,11 @@ Così, arriviamo allo studio \cite{study2006}, che applica questa teoria (invece
     \label{wheatfield}
 \end{figure}
 
-\section{Navier-Stokes}
+\section{Le equazioni di Navier-Stokes}
 
-\subsection{Ricavarle}
+\subsection{Derivazione}
 
-Partiamo \cite{derivationns} dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà intensiva (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume.
+Partiamo dal \emph{teorema del trasporto di Reynolds}, che afferma qualcosa di apparentemente scontato: data una certa proprietà intensiva (che può essere anche vettoriale) di una sostanza in un volume, la variazione dell'integrale di questa proprietà nel volume sarà pari alla differenza fra quanta ne entra e quanta ne esce, sommata a quanta proprietà si genera o si distrugge nel volume.
 
 Se il nostro volume è $\Omega$, la proprietà intensiva è $\phi$, il suo flusso è $\mathbf{v}$, e $s$ sono le \emph{sources}, ovvero i luoghi dove la proprietà viene generata, scriviamo:
 
@@ -71,7 +74,7 @@ Se il nostro volume è $\Omega$, la proprietà intensiva è $\phi$, il suo fluss
 \iiint_{\Omega} \mathbf{s} \, \text{d} V
 \end{equation}
 
-Applicando il teorema della divergenza, possiamo rendere tutti gli integrali volumetrici, poi portare la derivata temporale nel primo integrale secondo la regola di Leibniz, per ottenere:\\*
+Applicando il teorema della divergenza, possiamo rendere tutti gli integrali volumetrici e portare la derivata temporale nel primo integrale secondo la regola di Leibniz, per ottenere:\\*
 \begin{equation}
 \frac{\partial \phi}{\partial t} = - \nabla \cdot ( \phi \mathbf{v} ) + \mathbf{s}
 \end{equation}
@@ -84,7 +87,7 @@ Se applichiamo il teorema del trasporto di Reynolds alla densità  --- ovvero sc
 m = \iiint_{\Omega} \rho \dif V
 \end{equation}
 
---- per la conservazione della massa abbiamo $\mathbf{s} = 0$ (non esistono ``generatori'' di massa),  otteniamo:
+--- per la conservazione della massa abbiamo $\mathbf{s} = 0$ (non esistono ``generatori'' di massa) e quindi otteniamo:
 
 \begin{equation}
 \frac{\partial \rho}{\partial t} + \nabla \cdot ( \rho \mathbf{v} ) = 0 \label{consmassa}
@@ -97,7 +100,7 @@ Postulando che il fluido non possa essere compresso --- ovvero che la densità s
 
 \paragraph{Quantità di moto}
 
-Se, invece, applichiamo il teorema alla quantità di moto (sostituiamo alla generica proprietà intensiva $\phi$  il vettore $\rho \mathbf{v}$), ricaviamo:
+Se, invece, applichiamo il teorema alla quantità di moto (sostituendo alla generica proprietà intensiva $\phi$  il vettore $\rho \mathbf{v}$), ricaviamo:
 
 \begin{equation}
 \pderiv{(\rho \mathbf{v})}{t} + \nabla \cdot ( \rho \mathbf{v} \mathbf{v} ) =  \mathbf{s}
@@ -113,14 +116,14 @@ v_z v_x & v_z v_y & v_z v_z
 \end{pmatrix} \label{vettorepervettore}
 \end{equation}
 
-dove per $\mathbf{e}_i$ intendiamo un versore nell'$i$-esima direzione.
+in cui per $\mathbf{e}_i$ intendiamo un versore nell'$i$-esima direzione.
 
 Compare dunque la divergenza di un tensore: questa è definita come il vettore
 
 \begin{equation}
 \nabla \cdot \mathbf{T} = \left( \sum_{i} \frac{\partial T_{ij}}{\partial x_i} \right) \mathbf{e}_j\end{equation}
 
-(spesso si omette la somma).
+(spesso nella notazione tensoriale si omette la somma, per evitare un'eccessiva verbosità).
 
 Semplifichiamo dunque, utilizzando le seguenti identità dell'analisi tensoriale: \\*
 \begin{itemize}
@@ -150,11 +153,11 @@ L'integrale volumetrico del termine $\mathbf{s}$ comprende tutti gli altri tipi 
     \label{self}
 \end{figure}
 
-Ignorando le \emph{body forces} (come la gravità), possiamo scrivere\\*
+Ignorando le forze del corpo (quelle che, come la gravità, agiscono sull'intero volume di un corpo), possiamo scrivere\\*
 \begin{equation}
 \mathbf{s} = \nabla \cdot \bm{\sigma}
 \end{equation}\\*
-Dove $\bm{\sigma}$ è un tensore del secondo ordine che include tutti gli sforzi sull'infinitesimo di volume $\mathrm{d}V$. 
+dove $\bm{\sigma}$ è un tensore del secondo ordine che include tutti gli sforzi sull'infinitesimo di volume $\mathrm{d}V$. 
 
 \begin{equation}
 \bm{\sigma} = \begin{pmatrix}
@@ -164,7 +167,7 @@ Dove $\bm{\sigma}$ è un tensore del secondo ordine che include tutti gli sforzi
 \end{pmatrix}
 \end{equation}
 
-Lo possiamo dividere in pressione e forze viscose, ovvero consideriamo prima le componenti ortogonali e poi gli sforzi di taglio.
+Possiamo dividere $\bm{\sigma}$ in pressione e forze viscose, ovvero consideriamo prima le componenti ortogonali e poi gli sforzi di taglio.
 
 Scomponiamo quindi $\bm{\sigma}$ in:\\*
 \begin{equation}
@@ -175,7 +178,7 @@ Scomponiamo quindi $\bm{\sigma}$ in:\\*
 \end{pmatrix}
 \end{equation}
 
-dove  $I_3$ è una matrice identità tre per tre. Se definiamo la pressione come un meno un terzo della traccia di $\bm{\sigma}$ (possiamo farlo assumendo che il flusso sia isotropico), ci rimane $\bm{\sigma} = -p I_3 + \bm{\tau}$. Intuitivamente, il primo termine rappresenta le forze che cercano di comprimere il parallelepipedo, mentre il secondo quelle che tendono a distorcerlo.
+dove  $I_3$ è una matrice identità tre per tre. Se definiamo la pressione come $-\nicefrac{1}{3}$ della traccia di $\bm{\sigma}$ (possiamo farlo assumendo che il flusso sia isotropico), ci rimane $\bm{\sigma} = -p I_3 + \bm{\tau}$. Intuitivamente, il primo termine rappresenta le forze che cercano di comprimere il parallelepipedo, mentre il secondo quelle che tendono a distorcerlo.
 
 Dunque, la forma dell'equazione per ora è:
 
@@ -185,7 +188,7 @@ Dunque, la forma dell'equazione per ora è:
 
 \subparagraph{Forza viscosa}
 
-Consideriamo una sola direzione del parallelepipedo $\mathrm{d} V$, ovvero due faccie parallele. Se il fluido che consideriamo è newtoniano, è stato osservato che:
+Consideriamo una sola direzione del parallelepipedo $\mathrm{d} V$, ovvero due faccie parallele. Già Newton aveva osservato che per alcuni fluidi, detti appunto \emph{newtoniani}, vale:
 
 \begin{equation}
 \tau_{ij} = \mu 
@@ -228,6 +231,8 @@ Sinteticamente, dunque, le equazioni di Navier-Stokes si possono esprimere così
 \nabla \cdot \mathbf{v} &= 0
 \end{align}
 \end{subequations}
+
+dove $\nu$ è la \emph{viscosità cinematica}, definita come $\nu = \mu / \rho$
 
 Possiamo introdurre l'operatore $\Dif / \Dif t$:
 
@@ -282,7 +287,9 @@ Il numero di Reynolds ($\text{Re}$) è definito come
 
 dove $v$ è la velocità media del flusso e $L$ è la lunghezza caratteristica del tratto che consideriamo.
 
-Rappresenta il rapporto fra le forze inerziali e quelle viscose: per capirlo, scegliamo un volume (come un cilindro) di superficie $S$ e lunghezza $L$, e un tempo unitario $t$ (interpretando dunque le derivate come semplici divisioni per tale intervallo) possiamo esprimerle come
+Rappresenta il rapporto fra le forze inerziali e quelle viscose: per capirlo, scegliamo un volume (come un cilindro) di superficie $S$ e lunghezza $L$, e un tempo unitario $t$ (interpretando dunque, euristicamente, le derivate come semplici divisioni per tale intervallo).
+
+Possiamo esprimere le forze come:
 
 \begin{subequations}
 \begin{align}
@@ -297,7 +304,7 @@ da cui
 \text{Re} = \frac{F_i}{F_v} =  \frac{\rho L^2}{t \mu} = \frac{\rho L v}{\mu}
 \end{equation}
 
-Chiaramente, questo calcolo non è formalmente impeccabile, ma permette di capire il concetto dietro a questo numero.
+Questo calcolo non è formalmente impeccabile (abbiamo trattato le derivate come divisioni discrete), ma permette di comprendere il significato fisico del numero di Reynolds.
 
 \paragraph{Ricaviamolo}
 
@@ -417,7 +424,8 @@ Assumiamo che la velocità orbitale $\accentset{\circ}{v}$ di un vortice sia pro
 
 dove $A$ è una costante adimensionale.
 
-La turbolenza avviene in quello che è detto \emph{inertial range}, ovvero l'insieme di scale per le quali dominano le forze inerziali: fra $d_{\text{max}}$, la dimensione del sistema, e $d_{\text{min}}$, la scala alla quale avviene la dissipazione in calore. Kolmogorov ha postulato che quest'ultima dipenda solo da $\epsilon$ e $\nu$. Dimensionalmente, possiamo trovare gli esponenti di questi parametri:
+La turbolenza avviene in quello che è detto \emph{inertial range}, ovvero l'insieme di scale per le quali dominano le forze inerziali.
+Queste sono comprese fra $d_{\text{max}}$, la dimensione del sistema, e $d_{\text{min}}$, la scala alla quale avviene la dissipazione in calore. Kolmogorov ha postulato che quest'ultima dipenda solo da $\epsilon$ e $\nu$. Dimensionalmente, possiamo trovare gli esponenti di questi parametri:
 
 \begin{equation}
 d_{\text{min}} \sim \nu^{3/4} \epsilon^{-1/4}
@@ -527,7 +535,7 @@ Poiché, come abbiamo visto, c'è una correlazione fra $\epsilon$ e la funzione 
 Un team di scienziati spagnoli \cite{study2006} ha messo in relazione la PDF delle fluttuazioni di luminanza\footnote{La luminanza è stata spesso usata da artisti (dall'inizio dell'impressionismo) per trasmettere una sensazione di movimento, poiché la parte del cervello che analizza il colore non riesce a percepire la luminanza, le parti con la stessa luminanza del dipinto non sono facilmente differenziabili e perciò sembrano ``vibrare''.} (intensità luminosa/unità di area) nei quadri di Van Gogh con la PDF delle differenze di velocità predette dalla teoria di Kolmogorov: per $v$, quindi, ora intendiamo luminanza, misurata come funzione dalle componenti RGB: $v = 0.299 R + 0.587 G + 0.144B$ (i parametri derivano dalla sensibilità umana alle varie componenti della luce).
 
 Quindi, nella griglia di pixel derivante dalla digitalizzazione dell'immagine è stato preso un campione di differenze di luminosità a diverse separazioni, e i risultati sono stati organizzati in un grafico semilogaritmico (ovvero nel quale un asse --- quello della separazione --- è lineare e l'altro --- quello della differenza di luminanza --- è logaritmico), nel quale dunque vedere una gaussiana indica una distribuzione log-normale della variabile effettiva.
-I risultati sono mostrati nella figura \ref{gaussians}.
+I risultati dell'analisi del quadro ``Notte Stellata'' (\ref{starrynight}) del 1889, sono mostrati nella figura \ref{gaussians}.
 
 Il fatto che il comportamento sia lo stesso a diverse scale è particolarmente significativo: è analogo alla previsione di Kolmogorov che i vortici siano statisticamente simili a diverse scale.
 
@@ -559,7 +567,7 @@ P_R(\delta v_R)=
 
 Inoltre, anche la previsione dell'equazione \eqref{scalinggenerico} è confermata, come possiamo vedere dalla figura \ref{scalingpower}.
 
-Entrambi questi risultati sono riferiti al quadro ``Notte Stellata'' (\ref{starrynight}), del 1889, ma gli scienziati spagnoli hanno analizzato altri tre quadri:
+Gli scienziati spagnoli hanno analizzato altri tre quadri:
 
 \begin{itemize}
     \item \emph{Wheatfield with crows}, del 1890 (figura \ref{wheatfield}, PDF nella figura \ref{wheatfieldpdf});
@@ -592,13 +600,15 @@ L'ultimo quadro è stato dipinto agli inizi del 1889, poco dopo il noto episodio
     \label{selfpdf}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
-    \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
-Telescope}}
-    \label{galaxy}
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.3]{hs-2004-10-a-full_jpg.jpg}
+%    \caption{Immagine di una stella dal \emph{NASA/ESA Hubble Space
+%Telescope}}
+%    \label{galaxy}
+%\end{figure}
+
+\newpage
 
 \tableofcontents
 
@@ -609,6 +619,11 @@ Telescope}}
   \emph{Turbulent luminance in impassioned van Gogh paintings}, \\
   \url{http://arxiv.org/abs/physics/0606246}, 
   2006.
+  
+\bibitem{nseqs}
+  Contributori di Wikipedia, \emph{Derivation of the Navier-Stokes equations},\\
+  \emph{Wikipedia, l'enciclopedia libera}, consultata il 26 giugno 2016 \\
+  \url{http://bit.ly/28W5aGl}
 
 \bibitem{kolmogorovpres}
   Karima Khusnutdinova, 
@@ -638,46 +653,50 @@ Telescope}}
   Lewis Fry Richardson, 1922.
   \url{http://www.nature.com/nphys/journal/v12/n3/full/nphys3697.html}
 
-\bibitem{heisenberg}  
-  \url{http://scienceworld.wolfram.com/biography/Heisenberg.html}
-
-\bibitem{derivationns}
-  \url{https://en.wikipedia.org/wiki/Derivation_of_the_Navier%E2%80%93Stokes_equations}
-  
-\bibitem{nseqs}
-  \url{https://en.wikipedia.org/wiki/Navier–Stokes_equations}
-
 \bibitem{tensorcalculus}
-  \url{http://homepages.engineering.auckland.ac.nz/~pkel015/SolidMechanicsBooks/Part_III/Chapter_1_Vectors_Tensors/Vectors_Tensors_14_Tensor_Calculus.pdf}
+  Università di Auckland, \emph{Solid Mechanics Book}\\
+  \url{http://bit.ly/1KCFVst}
 
 \bibitem{turbulence2}
+  Università di Dartmouth, \emph{Environmental Fluid Mechanics}\\
   \url{https://engineering.dartmouth.edu/~d30345d/books/EFM/chap8.pdf}
 
-\bibitem{fluiddynamics}
-  \url{https://www.materials.uoc.gr/el/grad/courses/METY101/FLUID_DYNAMICS_CRETE.pdf}     
+%\bibitem{fluiddynamics}
+%  \url{https://www.materials.uoc.gr/el/grad/courses/METY101/FLUID_DYNAMICS_CRETE.pdf}     
 
-\bibitem{sholar-turb}
-  \url{http://www.scholarpedia.org/article/Turbulence}
+%\bibitem{sholar-turb}
+%  \url{http://www.scholarpedia.org/article/Turbulence}
   
 \bibitem{viscousstresstensor}
-  \url{https://en.wikipedia.org/wiki/Viscous_stress_tensor}
+  Contributori di Wikipedia, \emph{Viscous stress tensor},\\
+  \emph{Wikipedia, l'enciclopedia libera}, consultata il 26 giugno 2016 \\
+  \url{http://bit.ly/28U4H76}
 
 \bibitem{innerp}
-  \url{https://en.wikipedia.org/wiki/Inner_product_space}
-  
+  Contributori di Wikipedia, \emph{Inner product space},\\
+  \emph{Wikipedia, l'enciclopedia libera}, consultata il 26 giugno 2016 \\
+  \url{http://bit.ly/28ZtURb}
+
+ \bibitem{pdf}
+   Contributori di Wikipedia, \emph{Probability density function},\\
+  \emph{Wikipedia, l'enciclopedia libera}, consultata il 26 giugno 2016 \\
+  \url{http://bit.ly/28V8nGr}
+   
 \bibitem{epsilon}  
-  \url{http://www.cfd-online.com/Wiki/Turbulence_dissipation_rate}  
-  
-\bibitem{pdf}
-  \url{https://en.wikipedia.org/wiki/Probability_density_function}
-  
+   Contributori di CFD Online, \emph{Turbulence dissipation rate},\\
+  \emph{CFD Online}, consultata il 26 giugno 2016 \\
+  \url{http://bit.ly/28Zugr8}    
+
 \bibitem{dispense}
   Valentino Pediroda, 
   \emph{Fluidodinamica} (dispense), A. A. 2005--2006, II semestre: capp. 4, 5, 7, 9.
   
 \bibitem{engr}
+  J. M. McDonough (Departments of Mechanical Engineering and Mathematics
+University of Kentucky), \emph{Introductory Lectures on Turbulence}. \\
   %Definizioni e cose sul prodotto interno.
-  \url{https://www.engr.uky.edu/~acfd/lctr-notes634.pdf}  
+  \url{https://www.engr.uky.edu/~acfd/lctr-notes634.pdf},  \\
+  2007.
   
 \bibitem{pdfvr}
   B. Castaing (Centre de Recherches sur les Très Basses Températures, CNRS, BP 166 X, 38042 Grenoble Cedex, France), \\
@@ -687,7 +706,16 @@ Telescope}}
   1990 (solo il sommario).
   
 \bibitem{scalingbuono}
-  \url{http://research.me.udel.edu/~lwang/reprints/Wang_etal_JFM_1996.pdf}
+  Lian-Ping Wang (Department of Mechanical Engineering, 126 Spencer Laboratory, University of Delaware, Newark, DE 19716, USA),\\
+ Shiyi Chen (BM Research Division, T.J. Watson Research Center, PO Box 218, Yorktown Heights,
+NY 10598, USA), \\
+James G. Brasseur (Department of Mechanical Engineering, Pennsylvania State University, University Park,PA 16802, USA),\\
+John C. Wyngaard (Department of Meteorology, Pennsylvania State University, University Park, PA 16802, USA) \\
+  \emph{Examination of hypotheses in the Kolmogorov
+refined turbulence theory through
+high-resolution simulations. }
+  \url{http://research.me.udel.edu/~lwang/reprints/Wang_etal_JFM_1996.pdf}, \\
+  1995
   
 \end{thebibliography}
 
