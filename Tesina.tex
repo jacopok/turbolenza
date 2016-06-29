@@ -233,14 +233,23 @@ Sinteticamente, dunque, le equazioni di Navier-Stokes si possono esprimere così
 \end{align}
 \end{subequations}
 
-dove $\nu$ è la \emph{viscosità cinematica}, definita come $\nu = \mu / \rho$
+dove $\nu$ è la \emph{viscosità cinematica}, definita come $\nu = \mu / \rho$.
 
-Possiamo introdurre l'operatore $\Dif / \Dif t$:
+Possiamo anche omettere la densità $\rho$, normalizzandola a 1 in quanto abbiamo già ipotizzato che sia costante, ed introdurre l'operatore $\Dif / \Dif t$:
 
 \begin{equation}
 \frac{\Dif \mathbf{a}}{\Dif t} =
 \pderiv{\mathbf{a}}{t} + \mathbf{v} \cdot (\nabla \mathbf{a}) 
 \end{equation}
+
+Ricaviamo dunque:
+
+\begin{subequations}
+\begin{align}
+&\frac{\Dif \mathbf{v}}{\Dif t}  = -\nabla p + \nu \nabla^2 \mathbf{v} \label{navier-stokes2} \\
+&\nabla \cdot \mathbf{v} = 0
+\end{align}
+\end{subequations}
 
 Oppure, scrivendo tutte le derivate parziali esplicitamente, se il vettore velocità è $\mathbf{v} (u, v, w)$:
 
@@ -511,12 +520,12 @@ f(x) =
 
 \subsection{La distribuzione di $\epsilon$}
 
-Kolmogorov nel 1962 \cite[pag.~115]{scalingbuono} ipotizzò che la media del tasso di dissipazione $\epsilon$ in un volume di raggio $r$
+Kolmogorov nel 1962 \cite[pag.~115]{scalingbuono} ipotizzò che la media del tasso di dissipazione $\epsilon$ in un volume di diametro $r$
 
 \begin{equation}
 \epsilon_r (\mathbf{x}, t) =
 \frac{6}{\pi r^3}
-\int_{|\mathbf{k}| \leq r/2} \epsilon (\mathbf{x} + \mathbf{h}, t) \, \text{d} \mathbf{h}
+\int_{|\mathbf{h}| \leq r/2} \epsilon (\mathbf{x} + \mathbf{h}, t) \, \text{d} \mathbf{h}
 \end{equation}
 
 avesse una distribuzione log-normale, con la varianza di $\ln (\epsilon_r)$ data da:

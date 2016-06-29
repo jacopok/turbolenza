@@ -11,11 +11,11 @@
 \contentsline {paragraph}{Valutazioni qualitative}{8}{section*.5}
 \contentsline {section}{\numberline {2}Il flusso turbolento}{8}{section.2}
 \contentsline {paragraph}{Media}{8}{section*.6}
-\contentsline {paragraph}{Viscosit\IeC {\`a} turbolenta}{8}{section*.7}
+\contentsline {paragraph}{Viscosit\IeC {\`a} turbolenta}{9}{section*.7}
 \contentsline {subsection}{\numberline {2.1}La teoria di Kolmogorov}{9}{subsection.2.1}
 \contentsline {paragraph}{Tasso di dissipazione}{9}{section*.8}
 \contentsline {subsection}{\numberline {2.2}La funzione di struttura}{10}{subsection.2.2}
 \contentsline {paragraph}{Funzione densit\IeC {\`a} di probabilit\IeC {\`a}}{10}{section*.9}
 \contentsline {paragraph}{Distribuzione log-normale}{10}{section*.10}
-\contentsline {subsection}{\numberline {2.3}La distribuzione di $\epsilon $}{10}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.3}La distribuzione di $\epsilon $}{11}{subsection.2.3}
 \contentsline {section}{\numberline {3}La teoria di Kolmogorov applicata all'arte}{11}{section.3}
