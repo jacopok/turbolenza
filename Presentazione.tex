@@ -113,20 +113,6 @@ dove $\rho$ è la densità del fluido, $v$ la velocità media del flusso, $L$ la
 \end{figure}
 \end{frame}
 
-\begin{frame}{Flusso a diversi numeri di Reynolds}
-\begin{figure}
-\centering
-\includegraphics[scale=0.4]{flow_cylinder_6.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Il numero di Reynolds nel nuoto}
-\begin{figure}
-\centering
-\includegraphics[scale=0.12]{infographic.jpg}
-\end{figure}
-\end{frame}
-
 \subsection{Le equazioni di Navier-Stokes}
 
 \begin{frame}{Ipotesi per le equazioni di Navier-Stokes}
@@ -157,7 +143,7 @@ Significato:
 
 \begin{frame}{Derivata materiale}
 
-È la somma dell'accelerazione \emph{locale} (zero se il regime non cambia nel tempo) e di quella dovuta alla \emph{convezione}, ovvero quella dovuta dallo spostamento di particelle di fluido ad una parte diversa del flusso.
+È la somma dell'accelerazione \emph{locale} (zero se il regime non cambia nel tempo) e di quella dovuta alla \emph{convezione}, ovvero allo spostamento di particelle di fluido ad una parte diversa del flusso.
 
 \begin{equation}
 \frac{\dif \mathbf{v}}{\dif t} = 
@@ -167,8 +153,6 @@ Significato:
 \frac{\partial \mathbf{v}}{\partial z} \frac{\dif z}{\dif t} =
 \frac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot (\nabla \mathbf{v})
 \end{equation}
-
-(Immagine pompa pompiere)
 \end{frame}
 
 \begin{frame}{Le equazioni adimensionalizzate}
@@ -177,10 +161,85 @@ Significato:
 \end{equation}
 
 Il numero di Reynolds \emph{bilancia} le forze inerziali e quelle viscose.
+
+\begin{itemize}
+\item Alti numeri di Reynolds: flusso \emph{turbolento}
+\item Bassi numeri di Reynolds: flusso \emph{laminare}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Flusso a diversi numeri di Reynolds}
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{flow_cylinder_6.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Il numero di Reynolds nel nuoto}
+\begin{figure}
+\centering
+\includegraphics[scale=0.12]{infographic.jpg}
+\end{figure}
+\end{frame}
+
+\subsection{La cascata di energia}
+
+\begin{frame}{Vortici}
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{Airplane_Turbulence_MIT.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cascata di energia}
+\begin{figure}
+\centering
+\includegraphics[scale=0.65]{large.jpg}
+\end{figure}
 \end{frame}
 
 \subsection{La funzione di struttura}
 
+\begin{frame}{La funzione di struttura}
+
+\begin{equation}
+S_n (\mathbf{R} ) =
+\left\langle 
+\left(
+\delta v_r 
+\right)^n
+\right\rangle
+\end{equation}
+
+\begin{equation}
+\delta v_r = v(\mathbf{r} + \mathbf{R}) - v(\mathbf{r})
+\end{equation}
+
+Ipotesi di Kolmogorov (1962): distribuzione log-normale della funzione di struttura.
+\end{frame}
+
 \section{Il metodo dello studio}
+
+\begin{frame}{Il metodo dello studio}
+\begin{figure}
+\centering
+\includegraphics[scale=0.22]{studio1.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Il metodo dello studio}
+\begin{figure}
+\centering
+\includegraphics[scale=0.27]{studio2.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Riprodicibilità a diverse scale}
+\begin{figure}
+\centering
+\includegraphics[scale=0.43]{studio3.png}
+\end{figure}
+\end{frame}
 
 \end{document}

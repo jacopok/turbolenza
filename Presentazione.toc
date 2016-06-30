@@ -4,4 +4,7 @@
 \beamer@sectionintoc {1}{La turbolenza nei quadri di Van Gogh}{3}{0}{1}
 \beamer@sectionintoc {2}{La turbolenza in fluidodinamica}{12}{0}{2}
 \beamer@subsectionintoc {2}{1}{Il numero di Reynolds}{12}{0}{2}
-\beamer@subsectionintoc {2}{2}{Le equazioni di Navier-Stokes}{16}{0}{2}
+\beamer@subsectionintoc {2}{2}{Le equazioni di Navier-Stokes}{14}{0}{2}
+\beamer@subsectionintoc {2}{3}{La cascata di energia}{20}{0}{2}
+\beamer@subsectionintoc {2}{4}{La funzione di struttura}{22}{0}{2}
+\beamer@sectionintoc {3}{Il metodo dello studio}{23}{0}{3}
