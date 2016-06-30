@@ -37,19 +37,99 @@ Fluidodinamica e Van Gogh}
 \end{figure}
 \end{frame}
 
-\section{La turbolenza}
-
-\begin{frame}{Bassi numeri di Reynolds}
-Cose (immagini, s'intende)
+\begin{frame}{Cosa ci aspettiamo?}
+\begin{figure}
+\centering
+\includegraphics[scale=0.6]{gauss1.png}
+\caption{Distribuzione \emph{gaussiana} }
+\end{figure}
 \end{frame}
 
-\begin{frame}{Alti numeri di Reynolds}
-Altre cose
+\begin{frame}{Distribuzione di probabilità in \emph{Notte Stellata}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{gauss.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\emph{Campo di grano con volo di corvi}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.1]{wheatfield.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Distribuzione di probabilità nel \emph{Campo}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{PDF_wheat.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\emph{Strada e cipresso nella notte stellata}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.08]{road_cypress.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Distribuzione di probabilità nella \emph{Strada}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.35]{PDF_road.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{\emph{Autoritratto con pipa e orecchio bendato}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.08]{selfportrait.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Distribuzione di probabilità nell'\emph{Autoritratto}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.3]{PDF_self_portrait.png}
+\end{figure}
+\end{frame}
+
+\section{La turbolenza in fluidodinamica}
+
+\subsection{Il numero di Reynolds}
+
+\begin{frame}{Il numero di Reynolds}
+\begin{equation}
+\text{Re} = \frac{\rho v L}{\mu} = \frac{\text{forze inerziali}}{\text{forze viscose}}
+\end{equation}
+
+dove $\rho$ è la densità del fluido, $v$ la velocità media del flusso, $L$ la lunghezza caratteristica del sistema, e $\mu$ il coefficiente di viscosità dinamica.
+\end{frame}
+
+\begin{frame}{Flusso a diversi numeri di Reynolds}
+\begin{figure}
+\centering
+\includegraphics[scale=2.7]{allees.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Flusso a diversi numeri di Reynolds}
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{flow_cylinder_6.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Il numero di Reynolds nel nuoto}
+\begin{figure}
+\centering
+\includegraphics[scale=0.12]{infographic.jpg}
+\end{figure}
 \end{frame}
 
 \subsection{Le equazioni di Navier-Stokes}
 
-\begin{frame}{Ipotesi}
+\begin{frame}{Ipotesi per le equazioni di Navier-Stokes}
 \begin{itemize}
 \item Densità del fluido costante (\emph{incompribimilità});
 \item forza viscosa linermente dipendente da differenze di velocità (fluido newtoniano);
@@ -58,7 +138,7 @@ Altre cose
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Le equazioni in forma standard}
+\begin{frame}{Le equazioni di N.-S. in forma standard}
 \begin{subequations}
 \begin{align}
 \frac{\partial \mathbf{v}}{\partial t} + \mathbf{v} \cdot (\nabla \mathbf{v})  &= -\frac{\nabla p}{\rho} + \nu \nabla^2 \mathbf{v} \label{navier-stokes} \\
@@ -96,11 +176,7 @@ Significato:
 \frac{\partial \mathbf{v}}{\partial t} +\mathbf{v} \cdot (\nabla \mathbf{v}) = -\nabla p + \frac{1}{\text{Re}} \nabla^2 \mathbf{v}
 \end{equation}
 
-dove
-
-\begin{equation}
-\text{Re} = \frac{\rho v L}{\mu}
-\end{equation}
+Il numero di Reynolds \emph{bilancia} le forze inerziali e quelle viscose.
 \end{frame}
 
 \subsection{La funzione di struttura}

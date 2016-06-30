@@ -2,5 +2,6 @@
 \select@language {italian}
 \select@language {italian}
 \beamer@sectionintoc {1}{La turbolenza nei quadri di Van Gogh}{3}{0}{1}
-\beamer@sectionintoc {2}{La turbolenza}{4}{0}{2}
-\beamer@subsectionintoc {2}{1}{Le equazioni di Navier-Stokes}{6}{0}{2}
+\beamer@sectionintoc {2}{La turbolenza in fluidodinamica}{12}{0}{2}
+\beamer@subsectionintoc {2}{1}{Il numero di Reynolds}{12}{0}{2}
+\beamer@subsectionintoc {2}{2}{Le equazioni di Navier-Stokes}{16}{0}{2}
